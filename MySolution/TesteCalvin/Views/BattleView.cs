@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HavanaRPG.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace TesteCalvin.Views
 {
-    public partial class BattleView : Form
+    public partial class BattleView : HavanaView
     {
         public BattleView()
         {

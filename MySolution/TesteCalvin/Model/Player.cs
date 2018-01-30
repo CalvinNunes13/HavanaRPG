@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TesteCalvin.Model;
 
 namespace HavanaRPG.Model
 {
     class Player
     {
-        public static string Name = ""; 
+        public static string Name = "";
         public static string Race = "";
         public static string PlayerClass = "";
+        public static HavanaLib.Sex PlayerSex = HavanaLib.Sex.None;
+        public static string FormatCall = "";
         public static decimal Alignment = 0;
         public static decimal Experience = 0;
-        public static decimal PlayerLevel = 0;        
+        public static decimal PlayerLevel = 0;
 
         public static decimal HealthPts = 0;
         public static decimal MaxHealthPts = 0;
@@ -48,19 +51,36 @@ namespace HavanaRPG.Model
 
         public List<Ability> Skills = new List<Ability>();
         public List<Ability> Spells = new List<Ability>();
+        public List<Quest> OpenQuests = new List<Quest>();
+        public List<Quest> CompletedQuests = new List<Quest>();
 
         public HavanaLib.Locations PlayerLocation = HavanaLib.Locations.Limbo;
 
-        public Player() { }
+        public Player()
+        {
+            if (PlayerSex == HavanaLib.Sex.Male)
+            {
+                formatCall = "Sir";
+            }
+            else if (PlayerSex == HavanaLib.Sex.Female)
+            {
+                formatCall = "Lady";
+            }
+        }
 
         public void OnDie()
         {
-
+            HavanaLib.GameOver();
         }
 
-        public void OnLevelUp()
+        public static void OnLevelUp()
         {
+            PlayerLevel = PlayerLevel + 1;
+        }
 
+        public static void OnXpGain(int xp)
+        {
+            HavanaLib.UpdateNewXp(xp);
         }
     }
 }

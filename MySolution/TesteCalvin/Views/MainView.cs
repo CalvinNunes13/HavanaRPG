@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HavanaRPG.Controller;
+using HavanaRPG.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,21 +12,27 @@ using System.Windows.Forms;
 
 namespace HavanaRPG
 {
-    public partial class MainView : Form
+    public partial class MainView : HavanaView
     {
         public MainView()
         {
             InitializeComponent();
         }
 
-        private void MainView_Load(object sender, EventArgs e)
+        private void Btn_NewGameClick(object sender, EventArgs e)
         {
 
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private void Btn_LoadGameClick(object sender, EventArgs e)
         {
 
         }
+
+        private void Btn_ExitGameClick(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

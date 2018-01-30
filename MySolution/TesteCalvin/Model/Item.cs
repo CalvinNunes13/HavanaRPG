@@ -10,9 +10,10 @@ namespace HavanaRPG.Model
     {
         public string ItemName { get; set; }
         public string Description { get; set; }
-        public string DiceStyle { get; set; }
+        public decimal DiceRolls { get; set; }
+        public decimal DiceSides { get; set; }
         public int AttackPts { get; set; }
-        public int BonusAtkPts { get; set; }
+        public int BonusValue { get; set; }
         public int ArmorPts { get; set; }
         public int DefensePts { get; set; }
         public int EnergyCost { get; set; }
@@ -32,9 +33,10 @@ namespace HavanaRPG.Model
         {
             ItemName = "";
             Description = "";
-            DiceStyle = "1d4";
+            DiceRolls = 1;
+            DiceSides = 4;
             AttackPts = 0;
-            BonusAtkPts = 0;
+            BonusValue = 0;
             ArmorPts = 0;
             DefensePts = 0;
             EnergyCost = 0;
@@ -45,16 +47,23 @@ namespace HavanaRPG.Model
             EquipElements.Add(Element1);
             EquipElements.Add(Element2);
             EquipElements.Add(Element3);
-        }
+        }        
 
         public virtual void OnEquiped()
         {
-            HavanaLib.UpdateEquipmentValues();
+            HavanaLib.UpdateSingleEquipmentValues(ArmorPts, DefensePts);
         }
 
         public virtual void OnUnequiped()
         {
-            HavanaLib.UpdateEquipmentValues();
+            decimal negativeArm = ArmorPts * -1;
+            decimal negativeDef = DefensePts * -1;
+            HavanaLib.UpdateSingleEquipmentValues(negativeArm, negativeDef);
+        }
+
+        public virtual void OnUse()
+        {
+
         }
 
         public virtual void OnSold()

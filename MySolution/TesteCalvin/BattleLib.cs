@@ -16,7 +16,7 @@ namespace HavanaRPG.Model
             }
             return false;
         }
-        
+
         public static float DoAttack(int atkPts, int def, int hp, HavanaLib.AdvDvd EnemyAdvDvd)
         {
             float finalHp = 0;
@@ -61,6 +61,51 @@ namespace HavanaRPG.Model
                 return hp;
             }
             return finalHp;
+        }
+
+        public static void PlayerLoseHp(decimal lostValue)
+        {
+            var hp = Player.HealthPts;
+            hp = hp - lostValue;
+            if (hp < 0)
+            {
+                hp = 0;
+            }
+            Player.HealthPts = hp;
+        }
+
+        public static void PlayerGainHp(decimal value)
+        {
+            var hp = Player.HealthPts;
+            hp = hp + value;
+            if (hp > Player.MaxHealthPts)
+            {
+                hp = Player.MaxHealthPts;
+            }
+            Player.HealthPts = hp;
+        }
+
+
+        public static void PlayerLoseEnergy(decimal energyValue)
+        {
+            var ep = Player.EnergyPts;
+            ep = ep - energyValue;
+            if (ep < 0)
+            {
+                ep = 0;
+            }
+            Player.EnergyPts = ep;
+        }
+
+        public static void PlayerGainEnergy(decimal value)
+        {
+            var ep = Player.EnergyPts;
+            ep = ep + value;
+            if (ep > Player.MaxEnergyPts)
+            {
+                ep = Player.MaxEnergyPts;
+            }
+            Player.EnergyPts = ep;
         }
 
     }

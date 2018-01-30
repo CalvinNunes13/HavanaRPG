@@ -9,10 +9,13 @@ namespace HavanaRPG.Model.Weapons
 {
     class Club : Item
     {
-        new string ItemName = "Club";
-        new string Description = "A very simple weapon made with wood.";
-        new decimal BuyValue  = 7;
-        new string DiceStyle = "1d4";
-        new int BonusAtkPts = -1;
+        public Club() {
+            ItemName = "Club";
+            Description = "A very simple weapon made with wood.";
+            BuyValue = 7;
+            DiceRolls = 1;
+            DiceSides = 4;
+            BonusAtkPts = -1;
+        }
     }
 }

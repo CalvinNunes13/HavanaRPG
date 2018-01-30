@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ViewsController.cs" />
     <Compile Include="HavanaLib.cs" />
     <Compile Include="BattleLib.cs" />
     <Compile Include="Model\Ability.cs" />
@@ -53,9 +54,15 @@
     <Compile Include="Model\Creature.cs" />
     <Compile Include="Model\Creatures\Wolf.cs" />
     <Compile Include="Model\ExperienceTable.cs" />
+    <Compile Include="Model\Items\SmallHealthPotion.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\MainGame.cs" />
+    <Compile Include="Model\Npc.cs" />
+    <Compile Include="Model\NPCs\Damian.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Quest.cs" />
+    <Compile Include="Model\Shop.cs" />
     <Compile Include="Model\Weapons\Club.cs" />
     <Compile Include="Views\BattleView.cs">
       <SubType>Form</SubType>
@@ -63,11 +70,11 @@
     <Compile Include="Views\BattleView.Designer.cs">
       <DependentUpon>BattleView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CityView.cs">
+    <Compile Include="Views\HavanaView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CityView.Designer.cs">
-      <DependentUpon>CityView.cs</DependentUpon>
+    <Compile Include="Views\HavanaView.Designer.cs">
+      <DependentUpon>HavanaView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
@@ -77,30 +84,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\PlayerEquipsView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\PlayerEquipsView.Designer.cs">
-      <DependentUpon>PlayerEquipsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PlayerView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\PlayerView.Designer.cs">
-      <DependentUpon>PlayerView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShopView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ShopView.Designer.cs">
-      <DependentUpon>ShopView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TalkView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\TalkView.Designer.cs">
-      <DependentUpon>TalkView.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Views\BattleView.resx">
+      <DependentUpon>BattleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HavanaView.resx">
+      <DependentUpon>HavanaView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,10 +117,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
     <Folder Include="Model\Cities\" />
-    <Folder Include="Model\Items\" />
     <Folder Include="Model\Locations\" />
+    <Folder Include="Model\Shops\" />
     <Folder Include="Model\Skills\" />
     <Folder Include="Model\Spells\" />
   </ItemGroup>

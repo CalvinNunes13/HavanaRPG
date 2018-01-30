@@ -20,8 +20,10 @@ namespace HavanaRPG.Model
         public decimal MaxDexterity { get; set; }
         public decimal Magic { get; set; }
         public decimal MaxMagic { get; set; }
-        public string DiceStyle { get; set; }
+        public decimal DiceRolls { get; set; }
+        public decimal DiceSides { get; set; }
         public decimal BonusAtk { get; set; }
+        public string ImgSource { get; set; }
 
         public decimal PhysicalAtkPoints { get; set; }
         public decimal MagicalAtkPoints { get; set; }

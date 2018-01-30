@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace HavanaRPG.Model
 {
@@ -17,27 +18,28 @@ namespace HavanaRPG.Model
         public enum DayTime { Morning, Afternoon, Night };
         public enum AdvDvd { Resistance, Advantage, Normal, Disadvantage, Weakness }
         public enum Elements { Water, Fire, Air, Earth, Dark, Light, Physical }
+        public enum Sex { Male, Female, None};
 
         public HavanaLib() { }
 
         //retorna um valor aleatório com base em um dado de determinados lados
-        public static int RollDice(int diceSides)
+        public static decimal RollDice(decimal diceSides)
         {
             var n = RollDice(diceSides, 0, false);
             return n;
         }
 
-        public static int RollDice(int diceSides, int bonus)
+        public static decimal RollDice(decimal diceSides, decimal bonus)
         {
             var n = RollDice(diceSides, bonus, true);
             return n;
         }
 
-        public static int RollDice(int diceSides, int bonus, bool returnWithBonus)
+        public static decimal RollDice(decimal diceSides, decimal bonus, bool returnWithBonus)
         {
             var min = 1;
-            var max = diceSides;
-            int diceValue = 0;
+            var max = (int)diceSides;
+            decimal diceValue = 0;
 
             var randomValue = new Random();
             diceValue = randomValue.Next(min, max);
@@ -51,9 +53,9 @@ namespace HavanaRPG.Model
         }
 
         //Retorna valor com base em um bonus extra
-        public static int ReturnWithBonus(int diceValue, int bonusValue)
+        public static decimal ReturnWithBonus(decimal diceValue, decimal bonusValue)
         {
-            var finalValue = 0;
+            decimal finalValue = 0;
             if (bonusValue < 0)
             {
                 finalValue = diceValue - (bonusValue * 1);
@@ -172,13 +174,94 @@ namespace HavanaRPG.Model
         }
 
         //Ajusta todos valores de Atk, Def e Armor do player com base nos equipamentos
-        public static void UpdateEquipmentValues()
+        public static void UpdateAllEquipmentValues()
         {
+            var equips = Player.Equipments;
+            decimal totalArm = 0;
+            decimal sumDef = 0;
+            decimal totalDef = 0;
+            for (var i = 0; i < equips.Count; i++)
+            {
+                var equip = equips[i];
+                totalArm += equip.ArmorPts;
+                totalDef += equip.DefensePts;
+            }
 
+            sumDef = Math.Floor(totalArm / 3);
+            totalDef += sumDef;
+
+            if (totalDef < 0)
+            {
+                totalDef = 0;
+            }
+            if (totalArm < 0)
+            {
+                totalArm = 0;
+            }
+
+
+            Player.DefensePts = totalDef;
+            Player.Armor = totalArm;
+        }
+
+        //Modifica a Arm e def do player com base em apenas um item
+        public static void UpdateSingleEquipmentValues(decimal itemArm)
+        {
+            UpdateSingleEquipmentValues(itemArm, 0);
+        }
+
+        public static void UpdateSingleEquipmentValues(decimal itemArm, decimal itemDef)
+        {
+            decimal totalArm = Player.Armor;
+            decimal totalDef = Player.DefensePts;
+
+            if (totalArm < 0)
+            {
+                totalArm = 0;
+            }
+
+            Player.Armor = totalArm + itemArm;
+            if (Player.Armor < 0)
+            {
+                Player.Armor = 0;
+            }
+            var newDef = (Player.Armor / 3) + itemDef;
+            if (newDef < 0)
+            {
+                newDef = 0;
+            }
+
+            Player.DefensePts = newDef;
+        }
+
+        public static void UpdateNewXp(int xp)
+        {
+            var currentXP = Player.Experience;
+            var currentLvl = Player.PlayerLevel;
+            var nextLevel = currentLvl + 1;
+            var xpTable = ExperienceTable.XpTable;
+            var xpToNextLevel = xpTable[(int)nextLevel - 1];
+            var newXp = currentXP + xp;
+            var remainingXp = newXp;
+            if (newXp >= xpToNextLevel)
+            {
+                remainingXp = newXp - xpToNextLevel;
+                if (remainingXp < 0)
+                {
+                    remainingXp = 0;
+                }
+                Player.OnLevelUp();
+                Player.Experience = 0;
+                UpdateNewXp((int)remainingXp);
+            }
+            else
+            {
+                Player.Experience = newXp;
+            }
         }
 
         //checa se player tem gold comparado a um valor
-        public static bool CheckPlayerHaveGold(int value)
+        public static bool CheckPlayerHaveGold(decimal value)
         {
             if (Player.GoldPcs < value)
             {
@@ -187,8 +270,14 @@ namespace HavanaRPG.Model
             return true;
         }
 
+        //quando acaba o jogo
+        public static void GameOver()
+        {
+
+        }
+
         //faz a compra ou venda de algo com gold do player
-        public static void MovementPlayerGold(int value, string action) //buy or sell
+        public static void PlayerGoldTransaction(int value, string action) //buy or sell
         {
             if (action == "buy")
             {
@@ -207,6 +296,51 @@ namespace HavanaRPG.Model
                 var goldRemain = Player.GoldPcs + value;
                 Player.GoldPcs = goldRemain;
             }
+        }
+
+        //Exibe imagem do dado na tela com o valor
+        public static void ShowDiceOnScreen(decimal diceValue)
+        {
+
+        }
+
+        //Restabelece vida ou ep do player
+        public static void RestorePlayer(decimal diceSides, decimal diceRolls, decimal bonusValue, string type) //type = hp ou ep
+        {
+            decimal totalValue = 0;
+            string display = "";
+            display = type == "hp" ? "hp" : "ep";
+            var msg = "";
+            for (var i = 0; i < diceRolls; i++)
+            {
+                var value = RollDice(diceSides);
+                ShowDiceOnScreen(value);                
+                totalValue += value;
+                if (IsEmpty(msg)) {
+                    msg += "Rolled: ";
+                }
+                else
+                {
+                    msg += " | ";
+                }
+                msg += value;
+                Thread.Sleep(2500); //2,5 segundos 
+            }
+            if (bonusValue > 0)
+            {
+                msg += " Bonus: " + bonusValue;
+            }
+            totalValue += bonusValue;
+            BattleLib.PlayerGainHp(totalValue);
+            msg += "\n" + "Restored " + totalValue + display;            
+            msg += "\n" + "Current HP: " + Player.HealthPts;
+            ShowLogStatusMsg(msg);
+        }
+
+        //Adiciona log de acontecimento na barra de status da view
+        public static void ShowLogStatusMsg(string msg)
+        {
+
         }
 
         public static void MsgBox(string msg)
