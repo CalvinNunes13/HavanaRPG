@@ -1,0 +1,10 @@
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\bin\Debug\TesteCalvin.exe.config
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\bin\Debug\TesteCalvin.exe
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\bin\Debug\TesteCalvin.pdb
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.csprojResolveAssemblyReference.cache
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.MainView.resources
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.Properties.Resources.resources
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.csproj.GenerateResource.Cache
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.csproj.CoreCompileInputs.cache
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.exe
+C:\Users\2DWeb\Dropbox\Calvin\Projetos\Testes\TesteFormsSolution\TesteCalvin\obj\Debug\TesteCalvin.pdb

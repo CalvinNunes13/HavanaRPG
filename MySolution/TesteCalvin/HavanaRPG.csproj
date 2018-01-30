@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C645DA3C-D5B1-41B3-B391-1CD657B2FD3E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HavanaRPG</RootNamespace>
+    <AssemblyName>HavanaRPG</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HavanaLib.cs" />
+    <Compile Include="BattleLib.cs" />
+    <Compile Include="Model\Ability.cs" />
+    <Compile Include="Model\Armor.cs" />
+    <Compile Include="Model\Armors\SimpleClothes.cs" />
+    <Compile Include="Model\Creature.cs" />
+    <Compile Include="Model\Creatures\Wolf.cs" />
+    <Compile Include="Model\ExperienceTable.cs" />
+    <Compile Include="Model\MainGame.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Weapons\Club.cs" />
+    <Compile Include="Views\BattleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BattleView.Designer.cs">
+      <DependentUpon>BattleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CityView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CityView.Designer.cs">
+      <DependentUpon>CityView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\PlayerEquipsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PlayerEquipsView.Designer.cs">
+      <DependentUpon>PlayerEquipsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PlayerView.Designer.cs">
+      <DependentUpon>PlayerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShopView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ShopView.Designer.cs">
+      <DependentUpon>ShopView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TalkView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TalkView.Designer.cs">
+      <DependentUpon>TalkView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Model\Cities\" />
+    <Folder Include="Model\Items\" />
+    <Folder Include="Model\Locations\" />
+    <Folder Include="Model\Skills\" />
+    <Folder Include="Model\Spells\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
