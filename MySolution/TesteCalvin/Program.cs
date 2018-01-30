@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HavanaRPG.Controller;
+using HavanaRPG.Model;
+using HavanaRPG.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +19,10 @@ namespace HavanaRPG
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainView());
+            var startView = new GameView();            
+            Application.Run(startView);
+            GameController.ExecuteBasics();
+            
         }
     }
 }

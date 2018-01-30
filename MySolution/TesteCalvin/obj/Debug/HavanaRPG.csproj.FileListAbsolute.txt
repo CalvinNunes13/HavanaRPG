@@ -1,0 +1,11 @@
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csprojResolveAssemblyReference.cache
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.HavanaView.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Properties.Resources.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csproj.GenerateResource.Cache
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csproj.CoreCompileInputs.cache
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\HavanaRPG.exe.config
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\HavanaRPG.exe
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\HavanaRPG.pdb
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.exe
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.pdb
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.TopMainMenu.resources

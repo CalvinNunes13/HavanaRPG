@@ -15,7 +15,7 @@ namespace HavanaRPG.Model.Weapons
             BuyValue = 7;
             DiceRolls = 1;
             DiceSides = 4;
-            BonusAtkPts = -1;
+            BonusValue = -1;
         }
     }
 }
