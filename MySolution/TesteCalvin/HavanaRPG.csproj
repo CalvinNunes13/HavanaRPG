@@ -63,6 +63,7 @@
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Quest.cs" />
     <Compile Include="Model\Shop.cs" />
+    <Compile Include="Model\Spells\MagicalCure.cs" />
     <Compile Include="Model\Weapons\Club.cs" />
     <Compile Include="Views\BattleView.cs">
       <SubType>Form</SubType>
@@ -121,7 +122,6 @@
     <Folder Include="Model\Locations\" />
     <Folder Include="Model\Shops\" />
     <Folder Include="Model\Skills\" />
-    <Folder Include="Model\Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

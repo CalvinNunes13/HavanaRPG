@@ -14,10 +14,16 @@ namespace HavanaRPG.Model
         public static int GameDateYear = 411;
         public static decimal CreaturesKilled = 0;
         public static HavanaLib.DayTime TimeofDay = HavanaLib.DayTime.Morning;
+        public static Player GamePlayer = new Player();
 
         public static void RunGameTime()
         {
             HavanaLib.RunLoopTimer(HavanaLib.AdvanceDayTime, new TimeSpan(600000)); //10 minutos
+        }
+
+        public static void NewGame()
+        {
+            
         }
 
         public static void SaveGame()

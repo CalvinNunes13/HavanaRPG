@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class ExperienceTable
+    public class ExperienceTable
     {
         public static int ExpLevel1 = 0;
         public static int ExpLevel2 = 0;

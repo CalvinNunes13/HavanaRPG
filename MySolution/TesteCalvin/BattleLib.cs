@@ -8,7 +8,7 @@ namespace HavanaRPG.Model
 {
     class BattleLib
     {
-        public static bool CheckIsDeath(int hp)
+        public static bool CheckIsDeath(decimal hp)
         {
             if (hp <= 0)
             {
@@ -17,29 +17,29 @@ namespace HavanaRPG.Model
             return false;
         }
 
-        public static float DoAttack(int atkPts, int def, int hp, HavanaLib.AdvDvd EnemyAdvDvd)
+        public static decimal DoAttack(decimal atkPts, decimal def, decimal hp, HavanaLib.AdvDvd EnemyAdvDvd)
         {
-            float finalHp = 0;
-            float totalAtkPts = 0;
+            decimal finalHp = 0;
+            decimal totalAtkPts = 0;
             try
             {
-                totalAtkPts = (float)atkPts;
-                finalHp = (float)hp;
+                totalAtkPts = atkPts;
+                finalHp = hp;
                 if (EnemyAdvDvd == HavanaLib.AdvDvd.Resistance)
                 {
-                    totalAtkPts = (float)Math.Floor(atkPts + (atkPts * 0.5f));
+                    totalAtkPts = Math.Floor(atkPts + (atkPts * (decimal)0.5));
                 }
                 else if (EnemyAdvDvd == HavanaLib.AdvDvd.Advantage)
                 {
-                    totalAtkPts = (float)Math.Floor(atkPts + (atkPts * 0.25f));
+                    totalAtkPts = Math.Floor(atkPts + (atkPts * (decimal)0.25));
                 }
                 else if (EnemyAdvDvd == HavanaLib.AdvDvd.Disadvantage)
                 {
-                    totalAtkPts = (float)Math.Floor(atkPts - (atkPts * 0.25f));
+                    totalAtkPts = Math.Floor(atkPts - (atkPts * (decimal)0.25));
                 }
                 else if (EnemyAdvDvd == HavanaLib.AdvDvd.Weakness)
                 {
-                    totalAtkPts = (float)Math.Floor(atkPts - (atkPts * 0.5f));
+                    totalAtkPts = Math.Floor(atkPts - (atkPts * (decimal)0.5));
                 }
                 else
                 {
@@ -65,47 +65,125 @@ namespace HavanaRPG.Model
 
         public static void PlayerLoseHp(decimal lostValue)
         {
-            var hp = Player.HealthPts;
+            var hp = MainGame.GamePlayer.HealthPts;
             hp = hp - lostValue;
             if (hp < 0)
             {
                 hp = 0;
             }
-            Player.HealthPts = hp;
+            MainGame.GamePlayer.HealthPts = hp;
         }
 
         public static void PlayerGainHp(decimal value)
         {
-            var hp = Player.HealthPts;
+            var hp = MainGame.GamePlayer.HealthPts;
             hp = hp + value;
-            if (hp > Player.MaxHealthPts)
+            if (hp > MainGame.GamePlayer.MaxHealthPts)
             {
-                hp = Player.MaxHealthPts;
+                hp = MainGame.GamePlayer.MaxHealthPts;
             }
-            Player.HealthPts = hp;
+            MainGame.GamePlayer.HealthPts = hp;
         }
 
 
         public static void PlayerLoseEnergy(decimal energyValue)
         {
-            var ep = Player.EnergyPts;
+            var ep = MainGame.GamePlayer.EnergyPts;
             ep = ep - energyValue;
             if (ep < 0)
             {
                 ep = 0;
             }
-            Player.EnergyPts = ep;
+            MainGame.GamePlayer.EnergyPts = ep;
         }
 
         public static void PlayerGainEnergy(decimal value)
         {
-            var ep = Player.EnergyPts;
+            var ep = MainGame.GamePlayer.EnergyPts;
             ep = ep + value;
-            if (ep > Player.MaxEnergyPts)
+            if (ep > MainGame.GamePlayer.MaxEnergyPts)
             {
-                ep = Player.MaxEnergyPts;
+                ep = MainGame.GamePlayer.MaxEnergyPts;
             }
-            Player.EnergyPts = ep;
+            MainGame.GamePlayer.EnergyPts = ep;
+        }
+
+        public static void UseAbility(Ability ability)
+        {
+            UseAbility(ability, null, false);
+        }
+
+        public static void UseAbility(Ability ability, Creature enemy)
+        {
+            UseAbility(ability, enemy, false);
+        }
+
+        public static void UseAbility(Ability ability, Creature enemy, bool playerTarget)
+        {
+            dynamic target;
+            if (playerTarget)
+            {
+                target = MainGame.GamePlayer;
+            }
+            else
+            {
+                target = enemy;
+            }
+
+            if (ability.HasBasicEffect)
+            {
+                ability.BasicEffect();                
+            }
+
+            if (ability.HasSpecialEffect)
+            {
+                ability.SpecialEffect();
+            }
+            
+            if (ability.HasStatusModifier)
+            {
+                ability.AddRemoveStatus();
+            }
+        }
+
+        public static void UseWeapon(Item weapon, Creature target, bool playerTarget)
+        {
+            if (weapon.HasSpecialEffect)
+            {
+                weapon.OnSpecialEffect();
+            }
+
+            if (weapon.DiceRolls > 0 && weapon.DiceSides > 0)
+            {
+
+            }
+        }
+
+        public static void UseDefend()
+        {
+            decimal defPts = MainGame.GamePlayer.DefensePts;
+            defPts = defPts + (defPts * (decimal)0.5);
+            MainGame.GamePlayer.CurrentDefPts = defPts;
+        }
+
+        public static void OnBattleStart()
+        {
+
+        }
+
+        public static void OnBattleEnd()
+        {
+        }
+
+        public static void RestoreAllStats()
+        {
+            MainGame.GamePlayer.Strenght = MainGame.GamePlayer.MaxStrenght;
+            MainGame.GamePlayer.Dexterity = MainGame.GamePlayer.MaxDexterity;
+            MainGame.GamePlayer.Magic = MainGame.GamePlayer.MaxMagic;
+            MainGame.GamePlayer.Creativity = MainGame.GamePlayer.MaxCreativity;
+            MainGame.GamePlayer.Winsdom = MainGame.GamePlayer.MaxWinsdom;
+            MainGame.GamePlayer.StatusEffects.Clear();
+            MainGame.GamePlayer.CurrentDefPts = MainGame.GamePlayer.DefensePts;
         }
 
     }

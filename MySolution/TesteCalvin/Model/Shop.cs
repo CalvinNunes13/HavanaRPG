@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class Shop
+    public class Shop
     {
         public string ShopName { get; set; }
         public Location Local { get; set; }

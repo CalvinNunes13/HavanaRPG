@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using HavanaRPG.Controller;
 
 namespace HavanaRPG.Model
 {
@@ -176,7 +177,7 @@ namespace HavanaRPG.Model
         //Ajusta todos valores de Atk, Def e Armor do player com base nos equipamentos
         public static void UpdateAllEquipmentValues()
         {
-            var equips = Player.Equipments;
+            var equips = MainGame.GamePlayer.Equipments;
             decimal totalArm = 0;
             decimal sumDef = 0;
             decimal totalDef = 0;
@@ -200,8 +201,8 @@ namespace HavanaRPG.Model
             }
 
 
-            Player.DefensePts = totalDef;
-            Player.Armor = totalArm;
+            MainGame.GamePlayer.DefensePts = totalDef;
+            MainGame.GamePlayer.Armor = totalArm;
         }
 
         //Modifica a Arm e def do player com base em apenas um item
@@ -212,32 +213,32 @@ namespace HavanaRPG.Model
 
         public static void UpdateSingleEquipmentValues(decimal itemArm, decimal itemDef)
         {
-            decimal totalArm = Player.Armor;
-            decimal totalDef = Player.DefensePts;
+            decimal totalArm = MainGame.GamePlayer.Armor;
+            decimal totalDef = MainGame.GamePlayer.DefensePts;
 
             if (totalArm < 0)
             {
                 totalArm = 0;
             }
 
-            Player.Armor = totalArm + itemArm;
-            if (Player.Armor < 0)
+            MainGame.GamePlayer.Armor = totalArm + itemArm;
+            if (MainGame.GamePlayer.Armor < 0)
             {
-                Player.Armor = 0;
+                MainGame.GamePlayer.Armor = 0;
             }
-            var newDef = (Player.Armor / 3) + itemDef;
+            var newDef = (MainGame.GamePlayer.Armor / 3) + itemDef;
             if (newDef < 0)
             {
                 newDef = 0;
             }
 
-            Player.DefensePts = newDef;
+            MainGame.GamePlayer.DefensePts = newDef;
         }
 
         public static void UpdateNewXp(int xp)
         {
-            var currentXP = Player.Experience;
-            var currentLvl = Player.PlayerLevel;
+            var currentXP = MainGame.GamePlayer.Experience;
+            var currentLvl = MainGame.GamePlayer.PlayerLevel;
             var nextLevel = currentLvl + 1;
             var xpTable = ExperienceTable.XpTable;
             var xpToNextLevel = xpTable[(int)nextLevel - 1];
@@ -250,20 +251,20 @@ namespace HavanaRPG.Model
                 {
                     remainingXp = 0;
                 }
-                Player.OnLevelUp();
-                Player.Experience = 0;
+                MainGame.GamePlayer.OnLevelUp();
+                MainGame.GamePlayer.Experience = 0;
                 UpdateNewXp((int)remainingXp);
             }
             else
             {
-                Player.Experience = newXp;
+                MainGame.GamePlayer.Experience = newXp;
             }
         }
 
         //checa se player tem gold comparado a um valor
         public static bool CheckPlayerHaveGold(decimal value)
         {
-            if (Player.GoldPcs < value)
+            if (MainGame.GamePlayer.GoldPcs < value)
             {
                 return false;
             }
@@ -283,18 +284,18 @@ namespace HavanaRPG.Model
             {
                 if (CheckPlayerHaveGold(value))
                 {
-                    var goldRemain = Player.GoldPcs - value;
+                    var goldRemain = MainGame.GamePlayer.GoldPcs - value;
                     if (goldRemain < 0)
                     {
                         goldRemain = 0;
                     }
-                    Player.GoldPcs = goldRemain;
+                    MainGame.GamePlayer.GoldPcs = goldRemain;
                 }
             }
             else
             {
-                var goldRemain = Player.GoldPcs + value;
-                Player.GoldPcs = goldRemain;
+                var goldRemain = MainGame.GamePlayer.GoldPcs + value;
+                MainGame.GamePlayer.GoldPcs = goldRemain;
             }
         }
 
@@ -309,8 +310,9 @@ namespace HavanaRPG.Model
         {
             decimal totalValue = 0;
             string display = "";
-            display = type == "hp" ? "hp" : "ep";
+            string displayPoints = "";            
             var msg = "";
+
             for (var i = 0; i < diceRolls; i++)
             {
                 var value = RollDice(diceSides);
@@ -326,14 +328,28 @@ namespace HavanaRPG.Model
                 msg += value;
                 Thread.Sleep(2500); //2,5 segundos 
             }
+
             if (bonusValue > 0)
             {
                 msg += " Bonus: " + bonusValue;
             }
             totalValue += bonusValue;
-            BattleLib.PlayerGainHp(totalValue);
+
+            if (type == "ep")
+            {
+                display = "ep";
+                BattleLib.PlayerGainEnergy(totalValue);
+                displayPoints = MainGame.GamePlayer.EnergyPts.ToString();
+            }
+            else
+            {
+                display = "hp";
+                BattleLib.PlayerGainHp(totalValue);
+                displayPoints = MainGame.GamePlayer.HealthPts.ToString();
+            }
+           
             msg += "\n" + "Restored " + totalValue + display;            
-            msg += "\n" + "Current HP: " + Player.HealthPts;
+            msg += "\n" + "Current " + display.ToUpper() + ": " + displayPoints;
             ShowLogStatusMsg(msg);
         }
 
@@ -341,6 +357,15 @@ namespace HavanaRPG.Model
         public static void ShowLogStatusMsg(string msg)
         {
 
+        }
+
+        //Chama na view de talk uma pergunta com respostas
+        public static void CreateQuestionTalks(string question, List<string> answers)
+        {
+            if (ViewsController.CurrentView.ToUpper() == "TALKVIEW")
+            {
+
+            }
         }
 
         public static void MsgBox(string msg)

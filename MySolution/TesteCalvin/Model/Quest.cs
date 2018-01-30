@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class Quest
+    public class Quest
     {
         public int QuestId { get; set; }
         public bool MainQuest { get; set; }

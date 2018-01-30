@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class Armor
+    public class Armor
     {
     }
 }

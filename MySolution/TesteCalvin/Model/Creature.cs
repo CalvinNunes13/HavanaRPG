@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class Creature
+    public class Creature
     {
         public string Name { get; set; }
         public decimal GoldPcs { get; set; }

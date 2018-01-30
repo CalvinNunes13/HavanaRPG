@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class Npc
+    public class Npc
     {
         public string Name { get; set; }
         public Location Local { get; set; }
@@ -27,6 +27,11 @@ namespace HavanaRPG.Model
         public virtual void OnEndTalk()
         {
             var msg = ReturnByeTalk();
+        }
+
+        public virtual void OnQuestioning(string question, List<string> answers)
+        {
+            HavanaLib.CreateQuestionTalks(question, answers);
         }
 
         public virtual string ReturnGreeting()

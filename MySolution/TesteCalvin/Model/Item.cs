@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    class Item
+    public class Item
     {
         public string ItemName { get; set; }
         public string Description { get; set; }
@@ -28,6 +28,7 @@ namespace HavanaRPG.Model
         public HavanaLib.AdvDvd Advantage { get; set; }
         public HavanaLib.AdvDvd Disadvantage { get; set; }
         public List<Item> CraftIngredients { get; set; }
+        public bool HasSpecialEffect { get; set; }
 
         public Item()
         {
@@ -47,6 +48,7 @@ namespace HavanaRPG.Model
             EquipElements.Add(Element1);
             EquipElements.Add(Element2);
             EquipElements.Add(Element3);
+            HasSpecialEffect = false;
         }        
 
         public virtual void OnEquiped()
