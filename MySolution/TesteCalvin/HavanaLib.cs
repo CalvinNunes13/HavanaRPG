@@ -150,13 +150,13 @@ namespace HavanaRPG.Model
         }
 
         //Ajusta a visualização da data do jogo
-        public static void UpdateDisplayDateAndTime()
+        public static string UpdateDisplayDateAndTime()
         {
             string displayDate = "";
             displayDate = MainGame.GameDateDay.ToString() + "/";
             displayDate = displayDate + MainGame.GameDateMonth.ToString() + "/";
             displayDate = displayDate + MainGame.GameDateYear.ToString();
-            //Adicionar o staticdisplay no menu principal do jogo, alterar ele aqui, ajustar tambem a exibição de dia e noite
+            return displayDate;
         }
 
         //Verifica se objeto é vazio

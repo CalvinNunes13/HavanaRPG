@@ -11,13 +11,13 @@ namespace HavanaRPG.Controller
     {
         public static bool BattleViewOpen = false;
         public static bool CityViewOpen = false;
-        public static bool MainViewOpen = false;
+        public static bool GameViewOpen = false;
         public static bool PlayerEquipsViewOpen = false;
         public static bool PlayerViewOpen = false;
         public static bool ShopViewOpen = false;
         public static bool TalkViewOpen = false;
-        public static string CurrentView = "MAINVIEW";
-        public static string LastView = "MAINVIEW";
+        public static string CurrentView = "GAMEVIEW";
+        public static string LastView = "GAMEVIEW";
 
         public static void SetOpenClosed(string viewName)
         {
@@ -46,14 +46,14 @@ namespace HavanaRPG.Controller
                     }
                     break;
 
-                case "MAINVIEW":
-                    if (MainViewOpen)
+                case "GAMEVIEW":
+                    if (GameViewOpen)
                     {
-                        MainViewOpen = false;
+                        GameViewOpen = false;
                     }
                     else
                     {
-                        MainViewOpen = true;
+                        GameViewOpen = true;
                     }
                     break;
 

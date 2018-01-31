@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\GameController.cs" />
     <Compile Include="Controller\ViewsController.cs" />
     <Compile Include="HavanaLib.cs" />
     <Compile Include="BattleLib.cs" />
@@ -65,11 +66,17 @@
     <Compile Include="Model\Shop.cs" />
     <Compile Include="Model\Spells\MagicalCure.cs" />
     <Compile Include="Model\Weapons\Club.cs" />
-    <Compile Include="Views\BattleView.cs">
+    <Compile Include="Views\Controls\TopMainMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\TopMainMenu.Designer.cs">
+      <DependentUpon>TopMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\BattleView.Designer.cs">
-      <DependentUpon>BattleView.cs</DependentUpon>
+    <Compile Include="Views\GameView.Designer.cs">
+      <DependentUpon>GameView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\HavanaView.cs">
       <SubType>Form</SubType>
@@ -77,22 +84,10 @@
     <Compile Include="Views\HavanaView.Designer.cs">
       <DependentUpon>HavanaView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\BattleView.resx">
-      <DependentUpon>BattleView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\HavanaView.resx">
       <DependentUpon>HavanaView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,6 +99,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\Controls\TopMainMenu.resx">
+      <DependentUpon>TopMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

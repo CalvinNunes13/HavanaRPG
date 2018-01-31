@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HavanaRPG.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace HavanaRPG.Model
         public static decimal CreaturesKilled = 0;
         public static HavanaLib.DayTime TimeofDay = HavanaLib.DayTime.Morning;
         public static Player GamePlayer = new Player();
+
 
         public static void RunGameTime()
         {
