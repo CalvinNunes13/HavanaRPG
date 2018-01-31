@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HavanaRPG.Views;
 using System.Windows.Forms;
 
 namespace HavanaRPG.Controller
@@ -16,8 +17,26 @@ namespace HavanaRPG.Controller
         public static bool PlayerViewOpen = false;
         public static bool ShopViewOpen = false;
         public static bool TalkViewOpen = false;
-        public static string CurrentView = "GAMEVIEW";
-        public static string LastView = "GAMEVIEW";
+        public static Form CurrentForm = GameView.ActiveForm;
+        public static Form LastForm = GameView.ActiveForm;
+        public static string CurrentViewName = "GAMEVIEW";
+        public static string LastViewName = "GAMEVIEW";
+
+        public static void OpenNewForm(Form newFormView)
+        {
+            Application.Run(newFormView);
+        }
+
+        public static void SaveLastView()
+        {
+            LastForm = Form.ActiveForm;
+        }
+
+        public static void CloseCurrentForm()
+        {
+            SaveLastView();
+            Form.ActiveForm.Close();
+        }
 
         public static void SetOpenClosed(string viewName)
         {

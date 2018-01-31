@@ -65,47 +65,47 @@ namespace HavanaRPG.Model
 
         public static void PlayerLoseHp(decimal lostValue)
         {
-            var hp = MainGame.GamePlayer.HealthPts;
+            var hp = RpgLib.GamePlayer.HealthPts;
             hp = hp - lostValue;
             if (hp < 0)
             {
                 hp = 0;
             }
-            MainGame.GamePlayer.HealthPts = hp;
+            RpgLib.GamePlayer.HealthPts = hp;
         }
 
         public static void PlayerGainHp(decimal value)
         {
-            var hp = MainGame.GamePlayer.HealthPts;
+            var hp = RpgLib.GamePlayer.HealthPts;
             hp = hp + value;
-            if (hp > MainGame.GamePlayer.MaxHealthPts)
+            if (hp > RpgLib.GamePlayer.MaxHealthPts)
             {
-                hp = MainGame.GamePlayer.MaxHealthPts;
+                hp = RpgLib.GamePlayer.MaxHealthPts;
             }
-            MainGame.GamePlayer.HealthPts = hp;
+            RpgLib.GamePlayer.HealthPts = hp;
         }
 
 
         public static void PlayerLoseEnergy(decimal energyValue)
         {
-            var ep = MainGame.GamePlayer.EnergyPts;
+            var ep = RpgLib.GamePlayer.EnergyPts;
             ep = ep - energyValue;
             if (ep < 0)
             {
                 ep = 0;
             }
-            MainGame.GamePlayer.EnergyPts = ep;
+            RpgLib.GamePlayer.EnergyPts = ep;
         }
 
         public static void PlayerGainEnergy(decimal value)
         {
-            var ep = MainGame.GamePlayer.EnergyPts;
+            var ep = RpgLib.GamePlayer.EnergyPts;
             ep = ep + value;
-            if (ep > MainGame.GamePlayer.MaxEnergyPts)
+            if (ep > RpgLib.GamePlayer.MaxEnergyPts)
             {
-                ep = MainGame.GamePlayer.MaxEnergyPts;
+                ep = RpgLib.GamePlayer.MaxEnergyPts;
             }
-            MainGame.GamePlayer.EnergyPts = ep;
+            RpgLib.GamePlayer.EnergyPts = ep;
         }
 
         public static void UseAbility(Ability ability)
@@ -123,7 +123,7 @@ namespace HavanaRPG.Model
             dynamic target;
             if (playerTarget)
             {
-                target = MainGame.GamePlayer;
+                target = RpgLib.GamePlayer;
             }
             else
             {
@@ -161,9 +161,9 @@ namespace HavanaRPG.Model
 
         public static void UseDefend()
         {
-            decimal defPts = MainGame.GamePlayer.DefensePts;
+            decimal defPts = RpgLib.GamePlayer.DefensePts;
             defPts = defPts + (defPts * (decimal)0.5);
-            MainGame.GamePlayer.CurrentDefPts = defPts;
+            RpgLib.GamePlayer.CurrentDefPts = defPts;
         }
 
         public static void OnBattleStart()
@@ -177,13 +177,13 @@ namespace HavanaRPG.Model
 
         public static void RestoreAllStats()
         {
-            MainGame.GamePlayer.Strenght = MainGame.GamePlayer.MaxStrenght;
-            MainGame.GamePlayer.Dexterity = MainGame.GamePlayer.MaxDexterity;
-            MainGame.GamePlayer.Magic = MainGame.GamePlayer.MaxMagic;
-            MainGame.GamePlayer.Creativity = MainGame.GamePlayer.MaxCreativity;
-            MainGame.GamePlayer.Winsdom = MainGame.GamePlayer.MaxWinsdom;
-            MainGame.GamePlayer.StatusEffects.Clear();
-            MainGame.GamePlayer.CurrentDefPts = MainGame.GamePlayer.DefensePts;
+            RpgLib.GamePlayer.Strenght = RpgLib.GamePlayer.MaxStrenght;
+            RpgLib.GamePlayer.Dexterity = RpgLib.GamePlayer.MaxDexterity;
+            RpgLib.GamePlayer.Magic = RpgLib.GamePlayer.MaxMagic;
+            RpgLib.GamePlayer.Creativity = RpgLib.GamePlayer.MaxCreativity;
+            RpgLib.GamePlayer.Winsdom = RpgLib.GamePlayer.MaxWinsdom;
+            RpgLib.GamePlayer.StatusEffects.Clear();
+            RpgLib.GamePlayer.CurrentDefPts = RpgLib.GamePlayer.DefensePts;
         }
 
     }

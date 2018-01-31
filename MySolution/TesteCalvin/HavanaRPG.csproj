@@ -50,20 +50,23 @@
     <Compile Include="HavanaLib.cs" />
     <Compile Include="BattleLib.cs" />
     <Compile Include="Model\Ability.cs" />
-    <Compile Include="Model\Armor.cs" />
     <Compile Include="Model\Armors\SimpleClothes.cs" />
+    <Compile Include="Model\Battle.cs" />
+    <Compile Include="Model\Cities\Leto.cs" />
     <Compile Include="Model\Creature.cs" />
     <Compile Include="Model\Creatures\Wolf.cs" />
     <Compile Include="Model\ExperienceTable.cs" />
     <Compile Include="Model\Items\SmallHealthPotion.cs" />
     <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\MainGame.cs" />
+    <Compile Include="Model\RpgLib.cs" />
     <Compile Include="Model\Npc.cs" />
     <Compile Include="Model\NPCs\Damian.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Quest.cs" />
+    <Compile Include="Model\RandomEvent.cs" />
     <Compile Include="Model\Shop.cs" />
+    <Compile Include="Model\Shops\SimpleEquipShop.cs" />
     <Compile Include="Model\Spells\MagicalCure.cs" />
     <Compile Include="Model\Weapons\Club.cs" />
     <Compile Include="Views\Controls\TopMainMenu.cs">
@@ -116,9 +119,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Cities\" />
-    <Folder Include="Model\Locations\" />
-    <Folder Include="Model\Shops\" />
+    <Folder Include="Model\Places\" />
     <Folder Include="Model\Skills\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

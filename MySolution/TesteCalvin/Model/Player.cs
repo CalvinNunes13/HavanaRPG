@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HavanaRPG.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,7 @@ namespace HavanaRPG.Model
 
         public decimal WeigthCap { get; set; }
         public decimal WeigthCarrying { get; set; }
+        public decimal WeigthCapRemaining { get; set; }
         public decimal PhysicalAtkPoints { get; set; }
         public decimal MagicalAtkPoints { get; set; }
         public decimal Armor { get; set; }
@@ -74,6 +76,7 @@ namespace HavanaRPG.Model
             Experience = 0;
             GoldPcs = 0;
             WeigthCarrying = 0;
+            WeigthCapRemaining = WeigthCap - WeigthCarrying;
             Armor = 0;
             DefensePts = 0;
             CurrentDefPts = DefensePts;
@@ -89,6 +92,49 @@ namespace HavanaRPG.Model
             LevelsAwaiting = 0;
         }
 
+        public virtual void AdjustCarryingWeight()
+        {
+            if (BackpackEquips != null && BackpackEquips.Count > 0)
+            {
+                decimal carrying = 0;
+                foreach (var item in BackpackEquips)
+                {
+                    carrying += item.Weight;
+                }
+                WeigthCarrying = carrying;
+                WeigthCapRemaining = WeigthCap - WeigthCarrying;
+                RpgLib.CheckPlayerCarryingWeight();
+            }
+        }
+
+        public virtual void UpdateStatsByEffects()
+        {
+            if (StatusEffects != null && StatusEffects.Count > 0)
+            {
+                foreach (var effect in StatusEffects)
+                {
+                    if (effect == HavanaLib.StatusNames.Slow)
+                    {
+                        RpgLib.CutPlayerStats();
+                    }
+
+                    if (effect == HavanaLib.StatusNames.Blind)
+                    {
+                    }
+
+                    if (effect == HavanaLib.StatusNames.Confused)
+                    {
+                    }
+                }
+            }
+        }
+
+        public virtual void UpdateAllAttackingStats()
+        {
+            PhysicalAtkPoints = Math.Floor(Strenght / 3);
+            MagicalAtkPoints = Math.Floor(Magic / 3);
+        }
+
         public virtual void OnDie()
         {
             HavanaLib.GameOver();
@@ -96,14 +142,15 @@ namespace HavanaRPG.Model
 
         public virtual void OnLevelUp()
         {
+            RpgLib.ShowLogStatusMsg(Name + " leveled up!", true);
             PlayerLevel++;
             LevelsAwaiting++;
             HasLeveledUp = true;
         }
 
-        public virtual void OnXpGain(int xp)
+        public virtual void OnXpGain(decimal xp)
         {
-            HavanaLib.UpdateNewXp(xp);
+            RpgLib.UpdateNewXp(xp);
         }
     }
 }

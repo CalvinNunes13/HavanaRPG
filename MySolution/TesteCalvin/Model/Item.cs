@@ -12,6 +12,7 @@ namespace HavanaRPG.Model
         public string Description { get; set; }
         public decimal DiceRolls { get; set; }
         public decimal DiceSides { get; set; }
+        public decimal Weight { get; set; }
         public int AttackPts { get; set; }
         public int BonusValue { get; set; }
         public int ArmorPts { get; set; }
@@ -36,6 +37,7 @@ namespace HavanaRPG.Model
             Description = "";
             DiceRolls = 1;
             DiceSides = 4;
+            Weight = 0;
             AttackPts = 0;
             BonusValue = 0;
             ArmorPts = 0;
@@ -53,14 +55,14 @@ namespace HavanaRPG.Model
 
         public virtual void OnEquiped()
         {
-            HavanaLib.UpdateSingleEquipmentValues(ArmorPts, DefensePts);
+            RpgLib.UpdateSingleEquipmentValues(ArmorPts, DefensePts);
         }
 
         public virtual void OnUnequiped()
         {
             decimal negativeArm = ArmorPts * -1;
             decimal negativeDef = DefensePts * -1;
-            HavanaLib.UpdateSingleEquipmentValues(negativeArm, negativeDef);
+            RpgLib.UpdateSingleEquipmentValues(negativeArm, negativeDef);
         }
 
         public virtual void OnUse()

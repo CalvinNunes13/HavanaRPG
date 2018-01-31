@@ -10,6 +10,7 @@ namespace HavanaRPG.Model
     {
         public string Name { get; set; }
         public Location Local { get; set; }
+        public string Job { get; set; }
         public List<string> QuestionTalks { get; set; }
         public List<string> Greetings { get; set; }
         public List<string> ByeTalk { get; set; }

@@ -12,9 +12,10 @@ namespace HavanaRPG.Model.NPCs
         {
             Name = "Damian";
             Local = null;
+            Job = "Mayor";
             Greetings.Add("Hello!");
             Greetings.Add("Hey! Wanna Talk?");
-            Greetings.Add("Hi " + MainGame.GamePlayer.FormatCall + "!");
+            Greetings.Add("Hi " + RpgLib.GamePlayer.FormatCall + "!");
             ByeTalk.Add("See you!");
             ByeTalk.Add("Bye.");
             QuestionTalks.Add("Do you need some directions?");

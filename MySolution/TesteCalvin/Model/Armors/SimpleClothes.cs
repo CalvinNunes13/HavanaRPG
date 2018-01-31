@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HavanaRPG.Model;
 
-namespace TesteCalvin.Model.Armors
+namespace HavanaRPG.Model.Armors
 {
     class SimpleClothes : Item
     {

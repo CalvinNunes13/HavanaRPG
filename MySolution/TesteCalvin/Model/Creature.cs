@@ -28,6 +28,7 @@ namespace HavanaRPG.Model
         public decimal PhysicalAtkPoints { get; set; }
         public decimal MagicalAtkPoints { get; set; }
         public decimal DefensePts { get; set; }
+        public decimal ExperienceGiven { get; set; }
         public List<Item> Recompenses { get; set; }
 
         public Creature() {
@@ -38,6 +39,7 @@ namespace HavanaRPG.Model
             Magic = MaxMagic;
             PhysicalAtkPoints = Math.Floor(Strenght / 3);
             MagicalAtkPoints = Math.Floor(Magic / 3);
+            ExperienceGiven = 0;
         }
 
         public virtual void OnDie()
@@ -45,7 +47,7 @@ namespace HavanaRPG.Model
 
         }
 
-        public virtual void OnBattleStart()
+        public virtual void OnAppear()
         {
 
         }
