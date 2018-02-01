@@ -69,11 +69,31 @@
     <Compile Include="Model\Shops\SimpleEquipShop.cs" />
     <Compile Include="Model\Spells\MagicalCure.cs" />
     <Compile Include="Model\Weapons\Club.cs" />
-    <Compile Include="Views\Controls\TopMainMenu.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Views\BattleView.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Controls\TopMainMenu.Designer.cs">
-      <DependentUpon>TopMainMenu.cs</DependentUpon>
+    <Compile Include="Views\BattleView.Designer.cs">
+      <DependentUpon>BattleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CityView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CityView.Designer.cs">
+      <DependentUpon>CityView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\BaseForm.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Views\Controls\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Views\EquipsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EquipsView.Designer.cs">
+      <DependentUpon>EquipsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\GameView.cs">
       <SubType>Form</SubType>
@@ -89,6 +109,28 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\PlaceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PlaceView.Designer.cs">
+      <DependentUpon>PlaceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PlayerView.Designer.cs">
+      <DependentUpon>PlayerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TalkView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TalkView.Designer.cs">
+      <DependentUpon>TalkView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\Controls\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\HavanaView.resx">
       <DependentUpon>HavanaView.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,9 +144,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\Controls\TopMainMenu.resx">
-      <DependentUpon>TopMainMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,6 +160,32 @@
   <ItemGroup>
     <Folder Include="Model\Places\" />
     <Folder Include="Model\Skills\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\menu_map_image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\arcos.png" />
+    <EmbeddedResource Include="Assets\armas.png" />
+    <EmbeddedResource Include="Assets\armor.png" />
+    <EmbeddedResource Include="Assets\cajados.png" />
+    <EmbeddedResource Include="Assets\carisma.png" />
+    <EmbeddedResource Include="Assets\coins.png" />
+    <EmbeddedResource Include="Assets\dest.png" />
+    <EmbeddedResource Include="Assets\dice.png" />
+    <EmbeddedResource Include="Assets\favicon.ico" />
+    <EmbeddedResource Include="Assets\forca.png" />
+    <EmbeddedResource Include="Assets\habil.png" />
+    <EmbeddedResource Include="Assets\level.png" />
+    <EmbeddedResource Include="Assets\magia.png" />
+    <EmbeddedResource Include="Assets\Map.jpg" />
+    <EmbeddedResource Include="Assets\matq.png" />
+    <EmbeddedResource Include="Assets\msup.png" />
+    <EmbeddedResource Include="Assets\patches.png" />
+    <EmbeddedResource Include="Assets\pocoes.png" />
+    <EmbeddedResource Include="Assets\regras.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,7 +22,7 @@ namespace HavanaRPG.Model
         public Shop()
         {
             ShopName = "Shop";
-            SpecificView = new ShopView();
+            //SpecificView = new ShopView();
             PlayerBuyMessage = "Thanks!";
             PlayerSellMessage = "Thank you.";
         }

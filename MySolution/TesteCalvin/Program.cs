@@ -11,6 +11,9 @@ namespace HavanaRPG
 {
     static class Program
     {
+        public static Form HavanaViewMdi { get; set; }
+        //public static GameController MainGameController;
+
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
@@ -19,10 +22,15 @@ namespace HavanaRPG
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var startView = new GameView();            
+
+            HavanaViewMdi = new HavanaView();
+            GameController.ExecuteBasics(HavanaViewMdi);
+
+            var startView = GameController.HavanaViewMdi;
             Application.Run(startView);
-            GameController.ExecuteBasics();
-            
+
+            GameController.StartGame();
+
         }
     }
 }

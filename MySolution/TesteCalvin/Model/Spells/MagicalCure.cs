@@ -25,7 +25,7 @@ namespace HavanaRPG.Model.Spells
         {
             base.BasicEffect();
             BattleLib.PlayerLoseEnergy(EnergyCost);
-            HavanaLib.RestorePlayer(DiceSides, DiceRolls, DiceBonusPts, "hp");
+            RpgLib.RestorePlayer(DiceSides, DiceRolls, DiceBonusPts, "hp");
         }
     }
 }

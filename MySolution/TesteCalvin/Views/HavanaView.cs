@@ -16,20 +16,28 @@ namespace HavanaRPG.Views
         public HavanaView()
         {
             InitializeComponent();
+            this.IsMdiContainer = true;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             ViewsController.SetOpenClosed(this.Name);
-            ViewsController.CurrentView = this.Name;
+            ViewsController.CurrentViewName = this.Name;
+            ViewsController.CurrentForm = this;
             base.OnLoad(e);
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             ViewsController.SetOpenClosed(this.Name);
-            ViewsController.LastView = this.Name;
+            ViewsController.LastViewName = this.Name;
+            ViewsController.LastForm = this;
             base.OnFormClosed(e);
+        }
+
+        private void img_MapButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

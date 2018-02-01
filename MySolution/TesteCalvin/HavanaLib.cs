@@ -26,7 +26,7 @@ namespace HavanaRPG.Model
         public static void NewGame()
         {
             ViewsController.CloseCurrentForm();
-            ViewsController.OpenNewForm(new PlayerMainView());
+            //ViewsController.OpenNewForm(new PlayerMainView());
         }
 
         public static void SaveGame()

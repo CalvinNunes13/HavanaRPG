@@ -16,7 +16,7 @@ namespace HavanaRPG.Model
 
         public Battle()
         {
-            SpecificView = new BattleView();
+            //SpecificView = new BattleView();
             Description = "";
         }
 
@@ -32,13 +32,13 @@ namespace HavanaRPG.Model
             {
                 var enemyName = enemy.Name;
                 var xp = enemy.ExperienceGiven;
-                GameController.ShowLogStatusMsg(enemyName + " XP recompense: " + xp);
+                RpgLib.ShowLogStatusMsg(enemyName + " XP recompense: " + xp);
                 RpgLib.GamePlayer.OnXpGain(xp);
                 if (enemy.Recompenses != null && enemy.Recompenses.Count > 0)
                 {
                     foreach (var item in enemy.Recompenses)
                     {
-                        GameController.ShowLogStatusMsg(enemyName + " item recompense: " + item.ItemName);
+                        RpgLib.ShowLogStatusMsg(enemyName + " item recompense: " + item.ItemName);
                         RpgLib.GamePlayer.BackpackEquips.Add(item);
                     }
                     RpgLib.GamePlayer.AdjustCarryingWeight();

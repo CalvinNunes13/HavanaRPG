@@ -20,7 +20,7 @@ namespace HavanaRPG.Model.Items
         public override void OnUse()
         {
             base.OnUse();
-            HavanaLib.RestorePlayer(DiceSides, DiceRolls, BonusValue, "hp");
+            RpgLib.RestorePlayer(DiceSides, DiceRolls, BonusValue, "hp");
         }               
 
     }

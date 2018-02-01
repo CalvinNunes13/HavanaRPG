@@ -8,4 +8,8 @@ C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\b
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\HavanaRPG.pdb
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.exe
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.pdb
-C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.TopMainMenu.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Assets\menu_map_image.png
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.Controls.BaseForm.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Views\Controls\BaseForm.resx
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Views\Controls\BaseForm.cs
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Views\Controls\BaseForm.Designer.cs

@@ -9,11 +9,13 @@ using System.Windows.Forms;
 
 namespace HavanaRPG.Controller
 {
-    public class GameController
+    public static class GameController
     {
+        public static Form HavanaViewMdi;
 
-        public static void ExecuteBasics()
+        public static void ExecuteBasics(Form MainView)
         {
+            HavanaViewMdi = MainView;            
         }
 
         public static void DoTravel(Location travelDestination)
@@ -28,6 +30,14 @@ namespace HavanaRPG.Controller
             ViewsController.LastViewName = ViewsController.CurrentViewName;
             ViewsController.CloseCurrentForm();
             Application.Run(newLocal.SpecificView);
+        }
+
+        public static void StartGame()
+        {
+            var startView = new GameView();
+            startView.Name = "GameView";
+            startView.MdiParent = HavanaViewMdi;
+            ViewsController.LoadNewView(startView);
         }
 
         public static void UpdateViewMenus()

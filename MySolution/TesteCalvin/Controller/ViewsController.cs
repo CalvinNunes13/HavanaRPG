@@ -17,10 +17,16 @@ namespace HavanaRPG.Controller
         public static bool PlayerViewOpen = false;
         public static bool ShopViewOpen = false;
         public static bool TalkViewOpen = false;
-        public static Form CurrentForm = GameView.ActiveForm;
-        public static Form LastForm = GameView.ActiveForm;
-        public static string CurrentViewName = "GAMEVIEW";
-        public static string LastViewName = "GAMEVIEW";
+        public static Form CurrentForm;
+        public static Form LastForm;
+        public static string CurrentViewName = "STARTMENU";
+        public static string LastViewName = "STARTMENU";
+
+        public static void LoadNewView(Form newForm)
+        {
+            newForm.Show();
+            SetOpenClosed(newForm.Name);
+        }
 
         public static void OpenNewForm(Form newFormView)
         {

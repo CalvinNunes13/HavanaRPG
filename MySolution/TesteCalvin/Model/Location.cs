@@ -22,7 +22,7 @@ namespace HavanaRPG.Model
         public Location()
         {
             LocalName = "Local";
-            SpecificView = new LocationsView();
+            //SpecificView = new LocationsView();
         }
     }
 }
