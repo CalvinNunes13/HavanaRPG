@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using HavanaRPG.Controller;
+using System.Globalization;
 
 namespace HavanaRPG.Model
 {
@@ -54,6 +55,14 @@ namespace HavanaRPG.Model
                 MsgBox("ERROR WHILE LOADING! The game will not start.\n" + ex.Message + "\n Contact the developers at HavanaRpg@outlook.com", "error", "ERROR");
             }
             
+        }
+
+        public static string ToProperCase(string text)
+        {
+            text = text.ToLower();
+            var properCulture = new CultureInfo("en-US", false).TextInfo;
+            var textReturn = properCulture.ToTitleCase(text);
+            return textReturn;
         }
 
         //Retorna a quantidade de lançamentos de um dado
@@ -209,9 +218,14 @@ namespace HavanaRPG.Model
         }
 
         //exibe pop-up de mensagem com botões de confirmar e cancelar
-        public static void ConfirmBox(string msg) //alert, error, info
+        public static bool ConfirmBox(string msg) //alert, error, info
         {
-            MessageBox.Show(msg, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var ret = MessageBox.Show(msg, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (ret == DialogResult.OK)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

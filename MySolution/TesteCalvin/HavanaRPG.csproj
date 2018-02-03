@@ -58,6 +58,14 @@
     <Compile Include="Model\ExperienceTable.cs" />
     <Compile Include="Model\Items\SmallHealthPotion.cs" />
     <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\RpgClass.cs" />
+    <Compile Include="Model\RpgClasses\ArcherClass.cs" />
+    <Compile Include="Model\RpgClasses\MonkClass.cs" />
+    <Compile Include="Model\RpgClasses\PaladinClass.cs" />
+    <Compile Include="Model\RpgClasses\SorcererClass.cs" />
+    <Compile Include="Model\RpgClasses\DruidClass.cs" />
+    <Compile Include="Model\RpgClasses\ThiefClass.cs" />
+    <Compile Include="Model\RpgClasses\WarriorClass.cs" />
     <Compile Include="Model\RpgLib.cs" />
     <Compile Include="Model\Npc.cs" />
     <Compile Include="Model\NPCs\Damian.cs" />
@@ -115,11 +123,23 @@
     <Compile Include="Views\PlaceView.Designer.cs">
       <DependentUpon>PlaceView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlayerCreationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PlayerCreationView.Designer.cs">
+      <DependentUpon>PlayerCreationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlayerView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\PlayerView.Designer.cs">
       <DependentUpon>PlayerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartMainMenuView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StartMainMenuView.Designer.cs">
+      <DependentUpon>StartMainMenuView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TalkView.cs">
       <SubType>Form</SubType>
@@ -144,6 +164,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\PlayerCreationView.resx">
+      <DependentUpon>PlayerCreationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StartMainMenuView.resx">
+      <DependentUpon>StartMainMenuView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -186,6 +212,21 @@
     <EmbeddedResource Include="Assets\patches.png" />
     <EmbeddedResource Include="Assets\pocoes.png" />
     <EmbeddedResource Include="Assets\regras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\anao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\elfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\humano.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\naga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\orc.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using HavanaRPG.Views;
+﻿using HavanaRPG.Model.RpgClasses;
+using HavanaRPG.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,53 @@ namespace HavanaRPG.Model
             }
 
             return diceValue;
+        }
+
+        public static void SetDataByPlayerClass(HavanaLib.ClassNames playerClass)
+        {
+            RpgClass rpgClass;
+            //TODO: ADICIONAR ITENS, SKILLS, SPELLS E GOLD DE CADA CLASSE - CRIAR DADOS DE CADAS CLASSE  
+            switch (playerClass)
+            {
+                case HavanaLib.ClassNames.Warrior:
+                    rpgClass = new WarriorClass();                    
+                    break;
+
+                case HavanaLib.ClassNames.Sorcerer:
+                    rpgClass = new SorcererClass();
+                    break;
+
+                case HavanaLib.ClassNames.Druid:
+                    rpgClass = new DruidClass();
+                    break;
+
+                case HavanaLib.ClassNames.Paladin:
+                    rpgClass = new PaladinClass();
+                    break;
+
+                case HavanaLib.ClassNames.Monk:
+                    rpgClass = new MonkClass();
+                    break;
+
+                case HavanaLib.ClassNames.Archer:
+                    rpgClass = new ArcherClass();
+                    break;
+
+                case HavanaLib.ClassNames.Thief:
+                    rpgClass = new ThiefClass();
+                    break;
+
+                default:
+                    rpgClass = new RpgClass();
+                    break;
+            }
+            RpgLib.GamePlayer.MaxStrenght = rpgClass.InitialStrenght;
+            RpgLib.GamePlayer.MaxMagic = rpgClass.InitialMagic;
+            RpgLib.GamePlayer.MaxDexterity = rpgClass.InitialDexterity;
+            RpgLib.GamePlayer.MaxCreativity = rpgClass.InitialCreativity;
+            RpgLib.GamePlayer.MaxWinsdom = rpgClass.InitialWinsdom;
+            RpgLib.GamePlayer.MaxHealthPts = rpgClass.InitialHP;
+            RpgLib.GamePlayer.MaxEnergyPts = rpgClass.InitialEP;
         }
 
         //Retorna valor com base em um bonus extra

@@ -15,7 +15,7 @@ namespace HavanaRPG.Controller
 
         public static void ExecuteBasics(Form MainView)
         {
-            HavanaViewMdi = MainView;            
+            HavanaViewMdi = MainView;
         }
 
         public static void DoTravel(Location travelDestination)
@@ -34,10 +34,30 @@ namespace HavanaRPG.Controller
 
         public static void StartGame()
         {
-            var startView = new GameView();
-            startView.Name = "GameView";
+            var startView = new PlayerCreationView();
+            startView.Name = "PlayerCreationView";
             startView.MdiParent = HavanaViewMdi;
             ViewsController.LoadNewView(startView);
+        }
+
+        public static void LoadGame()
+        {
+            if (LoadGameState() && LoadPlayerInfo())
+            {
+                var startView = new GameView();
+                startView.Name = "GameView";
+                startView.MdiParent = HavanaViewMdi;
+                ViewsController.LoadNewView(startView);
+            }
+            else
+            {
+                HavanaLib.MsgBox("There was an error while loading the game. \n", "error", "Error");
+            }
+        }
+
+        public static void ExitGame()
+        {
+            Application.Exit();
         }
 
         public static void UpdateViewMenus()
@@ -45,14 +65,14 @@ namespace HavanaRPG.Controller
             var view = Form.ActiveForm;
         }
 
-        public static void LoadPlayerInfo()
+        public static bool LoadPlayerInfo()
         {
-
+            return true;
         }
 
-        public static void LoadGameState()
+        public static bool LoadGameState()
         {
-
+            return true;
         }
 
         public static void SavePlayerInfo()
@@ -63,6 +83,12 @@ namespace HavanaRPG.Controller
         public static void SaveGameState()
         {
 
+        }
+
+        public static void SetFirstPlayerData(string name, HavanaLib.ClassNames playerClass, HavanaLib.Sex gender)
+        {
+
+            RpgLib.GamePlayer = new Player(name, playerClass, gender);
         }
     }
 }

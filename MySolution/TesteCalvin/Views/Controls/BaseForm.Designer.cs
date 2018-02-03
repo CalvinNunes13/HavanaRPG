@@ -1,5 +1,6 @@
 ﻿using HavanaRPG.Controller;
 using System.Windows.Forms;
+using HavanaRPG.Model;
 
 namespace HavanaRPG.Views.Controls
 {

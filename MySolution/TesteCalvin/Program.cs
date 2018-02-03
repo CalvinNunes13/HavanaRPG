@@ -26,8 +26,9 @@ namespace HavanaRPG
             HavanaViewMdi = new HavanaView();
             GameController.ExecuteBasics(HavanaViewMdi);
 
-            var startView = GameController.HavanaViewMdi;
-            Application.Run(startView);
+            var startMainmenu = new StartMainMenuView();
+            startMainmenu.MdiParent = null;
+            Application.Run(startMainmenu);
 
             GameController.StartGame();
 

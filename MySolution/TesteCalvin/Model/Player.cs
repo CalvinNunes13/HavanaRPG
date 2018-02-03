@@ -11,8 +11,8 @@ namespace HavanaRPG.Model
     public class Player
     {
         public string Name { get; set; }
-        public string Race { get; set; }
-        public string PlayerClass { get; set; }
+        public HavanaLib.raceNames Race { get; set; }
+        public HavanaLib.ClassNames PlayerClass { get; set; }
         public HavanaLib.Sex PlayerSex { get; set; }
         public string FormatCall { get; set; }
         public decimal Alignment { get; set; }
@@ -61,8 +61,13 @@ namespace HavanaRPG.Model
         public bool HasLeveledUp { get; set; }
         public decimal LevelsAwaiting { get; set; }
 
-        public Player()
+        public Player(string name, HavanaLib.ClassNames playerClass, HavanaLib.Sex gender)
         {
+            Name = HavanaLib.ToProperCase(name);
+            PlayerClass= playerClass;
+            PlayerSex = gender;
+            PlayerLevel = 1;
+
             if (PlayerSex == HavanaLib.Sex.Male)
             {
                 FormatCall = "Sir";
@@ -72,22 +77,24 @@ namespace HavanaRPG.Model
                 FormatCall = "Lady";
             }
 
-            PlayerLevel = 1;
+            RpgLib.SetDataByPlayerClass(PlayerClass);
+            WeigthCap = Math.Floor(Strenght * 10);
+
             Experience = 0;
             GoldPcs = 0;
             WeigthCarrying = 0;
             WeigthCapRemaining = WeigthCap - WeigthCarrying;
-            Armor = 0;
-            DefensePts = 0;
+            
             CurrentDefPts = DefensePts;
             EnergyPts = MaxEnergyPts;
             HealthPts = MaxHealthPts;
             Dexterity = MaxDexterity;
             Strenght = MaxStrenght;
             Magic = MaxMagic;
+
             PhysicalAtkPoints = Math.Floor(Strenght / 3);
             MagicalAtkPoints = Math.Floor(Magic / 3);
-            WeigthCap = Math.Floor(Strenght * 10);
+
             HasLeveledUp = false;
             LevelsAwaiting = 0;
         }

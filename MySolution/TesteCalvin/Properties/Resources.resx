@@ -118,7 +118,76 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="forca" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\forca.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carisma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\carisma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="armas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\armas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="matq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\matq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="habil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\habil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="coins" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\coins.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="patches" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\patches.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="magia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\magia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="level" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\level.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="msup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\msup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\dest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="menu_map_image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\menu_map_image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Map" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Map.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cajados" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\cajados.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\dice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pocoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\pocoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arcos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\arcos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="regras" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\regras.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="armor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\armor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="anao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\anao.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="elfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\elfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="humano" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\humano.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="naga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\naga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="orc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\orc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
