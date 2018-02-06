@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace HavanaRPG.Views
 {
-    public partial class HavanaView : Form
+    public partial class MainContainerView : Form
     {
-        public HavanaView()
+        public MainContainerView()
         {
             InitializeComponent();
             this.IsMdiContainer = true;
@@ -38,6 +38,11 @@ namespace HavanaRPG.Views
         private void img_MapButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void HavanaView_Load(object sender, EventArgs e)
+        {
+            GameController.StartGame();
         }
     }
 }

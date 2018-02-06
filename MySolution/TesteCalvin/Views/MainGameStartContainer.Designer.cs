@@ -1,10 +1,6 @@
-﻿using HavanaRPG.Controller;
-using System.Windows.Forms;
-using HavanaRPG.Model;
-
-namespace HavanaRPG.Views.Controls
+﻿namespace HavanaRPG.Views
 {
-    partial class BaseForm : Form
+    partial class MainGameStartContainer
     {
         /// <summary>
         /// Required designer variable.
@@ -34,16 +30,18 @@ namespace HavanaRPG.Views.Controls
         {
             this.SuspendLayout();
             // 
-            // BaseForm
+            // MainGameStartContainer
             // 
-            this.MdiParent = GameController._MainContainerView;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 508);
+            this.ClientSize = new System.Drawing.Size(284, 261);
             this.ControlBox = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "BaseForm";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IsMdiContainer = true;
+            this.Name = "MainGameStartContainer";
+            this.Text = "Havana RPG";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainGameStartContainer_Load);
             this.ResumeLayout(false);
 
         }

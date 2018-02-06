@@ -21,6 +21,8 @@ namespace HavanaRPG.Model
 
         public Shop()
         {
+            Selling = new List<Item>();
+            Buying = new List<Item>();
             ShopName = "Shop";
             //SpecificView = new ShopView();
             PlayerBuyMessage = "Thanks!";

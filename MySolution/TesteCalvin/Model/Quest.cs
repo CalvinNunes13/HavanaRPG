@@ -18,6 +18,7 @@ namespace HavanaRPG.Model
 
         public Quest()
         {
+            ItensRecompense = new List<Item>();
             MainQuest = false;
             QuestName = "Quest";
             Description = "";

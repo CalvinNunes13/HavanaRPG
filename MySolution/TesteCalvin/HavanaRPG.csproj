@@ -56,6 +56,7 @@
     <Compile Include="Model\Creature.cs" />
     <Compile Include="Model\Creatures\Wolf.cs" />
     <Compile Include="Model\ExperienceTable.cs" />
+    <Compile Include="Model\GlobalSwitches.cs" />
     <Compile Include="Model\Items\SmallHealthPotion.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\RpgClass.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="Model\RpgClasses\DruidClass.cs" />
     <Compile Include="Model\RpgClasses\ThiefClass.cs" />
     <Compile Include="Model\RpgClasses\WarriorClass.cs" />
-    <Compile Include="Model\RpgLib.cs" />
+    <Compile Include="Model\GameplayLib.cs" />
     <Compile Include="Model\Npc.cs" />
     <Compile Include="Model\NPCs\Damian.cs" />
     <Compile Include="Model\Player.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Model\RandomEvent.cs" />
     <Compile Include="Model\Shop.cs" />
     <Compile Include="Model\Shops\SimpleEquipShop.cs" />
+    <Compile Include="Model\Skills\Fury.cs" />
     <Compile Include="Model\Spells\MagicalCure.cs" />
     <Compile Include="Model\Weapons\Club.cs" />
     <Compile Include="Views\BattleView.cs">
@@ -109,14 +111,20 @@
     <Compile Include="Views\GameView.Designer.cs">
       <DependentUpon>GameView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\HavanaView.cs">
+    <Compile Include="Views\MainContainerView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\HavanaView.Designer.cs">
-      <DependentUpon>HavanaView.cs</DependentUpon>
+    <Compile Include="Views\MainContainerView.Designer.cs">
+      <DependentUpon>MainContainerView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\MainGameStartContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainGameStartContainer.Designer.cs">
+      <DependentUpon>MainGameStartContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlaceView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,8 +159,8 @@
       <DependentUpon>BaseForm.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\HavanaView.resx">
-      <DependentUpon>HavanaView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MainContainerView.resx">
+      <DependentUpon>MainContainerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -164,6 +172,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\MainGameStartContainer.resx">
+      <DependentUpon>MainGameStartContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\PlayerCreationView.resx">
       <DependentUpon>PlayerCreationView.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Places\" />
-    <Folder Include="Model\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\menu_map_image.png">

@@ -17,7 +17,9 @@ namespace HavanaRPG.Model
 
         public Npc()
         {
-
+            QuestionTalks = new List<string>();
+            Greetings = new List<string>();
+            ByeTalk = new List<string>();
         }
 
         public virtual void OnStartTalk()

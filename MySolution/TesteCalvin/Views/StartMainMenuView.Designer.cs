@@ -35,6 +35,7 @@
             // 
             // btn_newGame
             // 
+            this.btn_newGame.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_newGame.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_newGame.Location = new System.Drawing.Point(12, 368);
             this.btn_newGame.Name = "btn_newGame";
@@ -46,6 +47,7 @@
             // 
             // btn_loadGame
             // 
+            this.btn_loadGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_loadGame.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_loadGame.Location = new System.Drawing.Point(12, 446);
             this.btn_loadGame.Name = "btn_loadGame";
@@ -57,6 +59,7 @@
             // 
             // btn_exit
             // 
+            this.btn_exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exit.Location = new System.Drawing.Point(888, 446);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(100, 50);

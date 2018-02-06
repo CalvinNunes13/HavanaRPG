@@ -14,11 +14,13 @@ namespace HavanaRPG.Views
         public StartMainMenuView()
         {
             InitializeComponent();
+            this.MdiParent = GameController._MainContainerView;
         }
 
         private void btn_newGame_Click(object sender, EventArgs e)
         {
-            GameController.StartGame();
+            GameController.StartNewGame();
+            this.Close();
         }
 
         private void btn_loadGame_Click(object sender, EventArgs e)

@@ -13,11 +13,12 @@ namespace HavanaRPG.Model
         public string Name { get; set; }
         public HavanaLib.raceNames Race { get; set; }
         public HavanaLib.ClassNames PlayerClass { get; set; }
-        public HavanaLib.Sex PlayerSex { get; set; }
-        public string FormatCall { get; set; }
+        public HavanaLib.Gender PlayerSex { get; set; }
+        public string CallTitle { get; set; }
         public decimal Alignment { get; set; }
         public decimal Experience { get; set; }
         public decimal PlayerLevel { get; set; }
+        public decimal ExpToNextLevel { get; set; }
 
         public decimal HealthPts { get; set; }
         public decimal MaxHealthPts { get; set; }
@@ -61,30 +62,36 @@ namespace HavanaRPG.Model
         public bool HasLeveledUp { get; set; }
         public decimal LevelsAwaiting { get; set; }
 
-        public Player(string name, HavanaLib.ClassNames playerClass, HavanaLib.Sex gender)
+        public Player(string name, HavanaLib.ClassNames playerClass, HavanaLib.Gender gender)
         {
+            Equipments = new List<Item>();
+            BackpackEquips = new List<Item>();
+            Skills = new List<Ability>();
+            Spells = new List<Ability>();
+            OpenQuests = new List<Quest>();
+            CompletedQuests = new List<Quest>();
+            StatusEffects = new List<HavanaLib.StatusNames>();
+
             Name = HavanaLib.ToProperCase(name);
-            PlayerClass= playerClass;
+            PlayerClass = playerClass;
             PlayerSex = gender;
             PlayerLevel = 1;
+            Experience = 0;
 
-            if (PlayerSex == HavanaLib.Sex.Male)
+            if (PlayerSex == HavanaLib.Gender.Male)
             {
-                FormatCall = "Sir";
+                CallTitle = "Sir";
             }
-            else if (PlayerSex == HavanaLib.Sex.Female)
+            else if (PlayerSex == HavanaLib.Gender.Female)
             {
-                FormatCall = "Lady";
+                CallTitle = "Lady";
             }
 
-            RpgLib.SetDataByPlayerClass(PlayerClass);
+            GameplayLib.SetDataByPlayerClass(PlayerClass);
             WeigthCap = Math.Floor(Strenght * 10);
 
-            Experience = 0;
-            GoldPcs = 0;
-            WeigthCarrying = 0;
-            WeigthCapRemaining = WeigthCap - WeigthCarrying;
-            
+            AdjustCarryingWeight();
+
             CurrentDefPts = DefensePts;
             EnergyPts = MaxEnergyPts;
             HealthPts = MaxHealthPts;
@@ -94,6 +101,7 @@ namespace HavanaRPG.Model
 
             PhysicalAtkPoints = Math.Floor(Strenght / 3);
             MagicalAtkPoints = Math.Floor(Magic / 3);
+            ExpToNextLevel = GameplayLib.UpdateReturnXpNextLevel(PlayerLevel, false);
 
             HasLeveledUp = false;
             LevelsAwaiting = 0;
@@ -110,7 +118,7 @@ namespace HavanaRPG.Model
                 }
                 WeigthCarrying = carrying;
                 WeigthCapRemaining = WeigthCap - WeigthCarrying;
-                RpgLib.CheckPlayerCarryingWeight();
+                GameplayLib.CheckPlayerCarryingWeight();
             }
         }
 
@@ -122,7 +130,7 @@ namespace HavanaRPG.Model
                 {
                     if (effect == HavanaLib.StatusNames.Slow)
                     {
-                        RpgLib.CutPlayerStats();
+                        GameplayLib.CutPlayerStats();
                     }
 
                     if (effect == HavanaLib.StatusNames.Blind)
@@ -149,7 +157,7 @@ namespace HavanaRPG.Model
 
         public virtual void OnLevelUp()
         {
-            RpgLib.ShowLogStatusMsg(Name + " leveled up!", true);
+            GameplayLib.ShowLogStatusMsg(Name + " leveled up!", true);
             PlayerLevel++;
             LevelsAwaiting++;
             HasLeveledUp = true;
@@ -157,7 +165,21 @@ namespace HavanaRPG.Model
 
         public virtual void OnXpGain(decimal xp)
         {
-            RpgLib.UpdateNewXp(xp);
+            GameplayLib.UpdateNewXp(xp);
+        }
+
+        public virtual void CalculateDefenseByArmor()
+        {
+            if (Armor > 3)
+            {
+                decimal def = 0;
+                def = Math.Floor(Armor / 3);
+                DefensePts = def;
+            }
+            else
+            {
+                DefensePts = 0;
+            }
         }
     }
 }

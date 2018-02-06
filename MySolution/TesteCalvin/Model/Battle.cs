@@ -22,7 +22,7 @@ namespace HavanaRPG.Model
 
         public virtual void OnStartBattle()
         {
-            ViewsController.CloseCurrentForm();
+            ViewsController.CloseForm(GameController._MainContainerView.ActiveMdiChild);
             ViewsController.OpenNewForm(SpecificView);
         }
 
@@ -32,19 +32,19 @@ namespace HavanaRPG.Model
             {
                 var enemyName = enemy.Name;
                 var xp = enemy.ExperienceGiven;
-                RpgLib.ShowLogStatusMsg(enemyName + " XP recompense: " + xp);
-                RpgLib.GamePlayer.OnXpGain(xp);
+                GameplayLib.ShowLogStatusMsg(enemyName + " XP recompense: " + xp);
+                GameplayLib.GamePlayer.OnXpGain(xp);
                 if (enemy.Recompenses != null && enemy.Recompenses.Count > 0)
                 {
                     foreach (var item in enemy.Recompenses)
                     {
-                        RpgLib.ShowLogStatusMsg(enemyName + " item recompense: " + item.ItemName);
-                        RpgLib.GamePlayer.BackpackEquips.Add(item);
+                        GameplayLib.ShowLogStatusMsg(enemyName + " item recompense: " + item.ItemName);
+                        GameplayLib.GamePlayer.BackpackEquips.Add(item);
                     }
-                    RpgLib.GamePlayer.AdjustCarryingWeight();
+                    GameplayLib.GamePlayer.AdjustCarryingWeight();
                 }
             }
-            ViewsController.CloseCurrentForm();
+            ViewsController.CloseForm(SpecificView);
             ViewsController.OpenNewForm(ViewsController.LastForm);
         }
     }

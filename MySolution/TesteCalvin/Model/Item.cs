@@ -21,11 +21,8 @@ namespace HavanaRPG.Model
         public int RequiredLvl { get; set; }
         public decimal BuyValue { get; set; }
         public decimal SellValue { get; set; }
-        public HavanaLib.Elements Element1 { get; set; }
-        public HavanaLib.Elements Element2 { get; set; }
-        public HavanaLib.Elements Element3 { get; set; }
         public List<HavanaLib.Elements> EquipElements { get; set; }
-        public List<HavanaLib.ClassNames> ExcludedClasses {get; set;}
+        public List<HavanaLib.ClassNames> ExcludedClasses { get; set; }
         public HavanaLib.AdvDvd Advantage { get; set; }
         public HavanaLib.AdvDvd Disadvantage { get; set; }
         public List<Item> CraftIngredients { get; set; }
@@ -33,6 +30,9 @@ namespace HavanaRPG.Model
 
         public Item()
         {
+            EquipElements = new List<HavanaLib.Elements>();
+            ExcludedClasses = new List<HavanaLib.ClassNames>();
+
             ItemName = "";
             Description = "";
             DiceRolls = 1;
@@ -46,23 +46,19 @@ namespace HavanaRPG.Model
             RequiredLvl = 0;
             BuyValue = 1;
             SellValue = Math.Floor(BuyValue / 2);
-            Element1 = HavanaLib.Elements.Physical;
-            EquipElements.Add(Element1);
-            EquipElements.Add(Element2);
-            EquipElements.Add(Element3);
             HasSpecialEffect = false;
-        }        
+        }
 
         public virtual void OnEquiped()
         {
-            RpgLib.UpdateSingleEquipmentValues(ArmorPts, DefensePts);
+            GameplayLib.UpdateSingleEquipmentValues(ArmorPts, DefensePts);
         }
 
         public virtual void OnUnequiped()
         {
             decimal negativeArm = ArmorPts * -1;
             decimal negativeDef = DefensePts * -1;
-            RpgLib.UpdateSingleEquipmentValues(negativeArm, negativeDef);
+            GameplayLib.UpdateSingleEquipmentValues(negativeArm, negativeDef);
         }
 
         public virtual void OnUse()

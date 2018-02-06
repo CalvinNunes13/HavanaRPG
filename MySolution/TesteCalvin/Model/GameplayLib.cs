@@ -1,4 +1,5 @@
-﻿using HavanaRPG.Model.RpgClasses;
+﻿using HavanaRPG.Controller;
+using HavanaRPG.Model.RpgClasses;
 using HavanaRPG.Views;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,22 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
 {
-    public class RpgLib
+    public class GameplayLib
     {
+        //Global Definitions//
+        public static string KingdomName = "Havana Kingdom";
         public static int GameDateDay = 1;
         public static int GameDateMonth = 1;
         public static int GameDateYear = 411;
         public static decimal CreaturesKilled = 0;
         public static HavanaLib.DayTime TimeofDay = HavanaLib.DayTime.Morning;
-        public static Player GamePlayer = new Player();
+        public static Player GamePlayer;
 
+        //Game Options//
+        public static decimal DiceShowTime = 2000;
+
+
+        //Game Functions//
         public static void RunGameTime()
         {
             HavanaLib.RunLoopTimer(AdvanceDayTime, new TimeSpan(60000)); //600000 = 10 minutos
@@ -53,14 +61,14 @@ namespace HavanaRPG.Model
             return diceValue;
         }
 
+        //---- AO INICIAR JOGO NOVO - Adiciona todos dados iniciais do player baseado em uma classe --------//
         public static void SetDataByPlayerClass(HavanaLib.ClassNames playerClass)
         {
             RpgClass rpgClass;
-            //TODO: ADICIONAR ITENS, SKILLS, SPELLS E GOLD DE CADA CLASSE - CRIAR DADOS DE CADAS CLASSE  
             switch (playerClass)
             {
                 case HavanaLib.ClassNames.Warrior:
-                    rpgClass = new WarriorClass();                    
+                    rpgClass = new WarriorClass();
                     break;
 
                 case HavanaLib.ClassNames.Sorcerer:
@@ -91,13 +99,91 @@ namespace HavanaRPG.Model
                     rpgClass = new RpgClass();
                     break;
             }
-            RpgLib.GamePlayer.MaxStrenght = rpgClass.InitialStrenght;
-            RpgLib.GamePlayer.MaxMagic = rpgClass.InitialMagic;
-            RpgLib.GamePlayer.MaxDexterity = rpgClass.InitialDexterity;
-            RpgLib.GamePlayer.MaxCreativity = rpgClass.InitialCreativity;
-            RpgLib.GamePlayer.MaxWinsdom = rpgClass.InitialWinsdom;
-            RpgLib.GamePlayer.MaxHealthPts = rpgClass.InitialHP;
-            RpgLib.GamePlayer.MaxEnergyPts = rpgClass.InitialEP;
+            GameplayLib.GamePlayer.MaxStrenght = rpgClass.InitialStrenght;
+            GameplayLib.GamePlayer.MaxMagic = rpgClass.InitialMagic;
+            GameplayLib.GamePlayer.MaxDexterity = rpgClass.InitialDexterity;
+            GameplayLib.GamePlayer.MaxCreativity = rpgClass.InitialCreativity;
+            GameplayLib.GamePlayer.MaxWinsdom = rpgClass.InitialWinsdom;
+            GameplayLib.GamePlayer.MaxHealthPts = rpgClass.InitialHP;
+            GameplayLib.GamePlayer.MaxEnergyPts = rpgClass.InitialEP;
+            GameplayLib.GamePlayer.GoldPcs = rpgClass.InitialGold;
+            if (rpgClass.InitialItens.Count > 0)
+            {
+                foreach (var item in rpgClass.InitialItens)
+                {
+                    GameplayLib.GamePlayer.BackpackEquips.Add(item);
+                }
+            }
+            if (rpgClass.InitialSkills.Count > 0)
+            {
+                foreach (var skill in rpgClass.InitialSkills)
+                {
+                    GameplayLib.GamePlayer.Skills.Add(skill);
+                }
+            }
+            if (rpgClass.InitialSpells.Count > 0)
+            {
+                foreach (var spell in rpgClass.InitialSpells)
+                {
+                    GameplayLib.GamePlayer.Spells.Add(spell);
+                }
+            }
+
+        }
+
+        //toDISPLAY LIB - Retorno de valores para display como string
+        public static string ReturnPlayerLocationToDisplay()
+        {
+            var local = GamePlayer.PlayerLocation.ToString();
+            return local;
+        }
+
+        public static string ReturnPlayerHPtoDisplay()
+        {
+            var MaxHP = GamePlayer.MaxHealthPts.ToString();
+            var cHP = GamePlayer.HealthPts.ToString();
+            return cHP + " / " + MaxHP;
+        }
+
+        public static string ReturnPlayerEPtoDisplay()
+        {
+            var MaxEP = GamePlayer.MaxEnergyPts.ToString();
+            var cEP = GamePlayer.EnergyPts.ToString();
+            return cEP + " / " + MaxEP;
+        }
+
+        public static string ReturnPlayerGoldToDisplay()
+        {
+            var gold = GamePlayer.GoldPcs.ToString();
+            return gold;
+        }
+
+        public static string ReturnPlayerLevelToDisplay()
+        {
+            var lvl = GamePlayer.PlayerLevel.ToString();
+            return lvl;
+        }
+
+        public static string ReturnPlayerXPtoDisplay()
+        {
+            var exp = GamePlayer.Experience.ToString();
+            return exp;
+        }
+
+        public static string ReturnPlayerNameToDisplay()
+        {
+            var name = GamePlayer.Name.ToString();
+            return name;
+        }
+        //------------ FIM ToDisplay LIB -------------//
+
+        public static void AdjustExperienceBar()
+        {
+            UpdateReturnXpNextLevel(GamePlayer.PlayerLevel, true);
+            decimal xpToLvl = GamePlayer.ExpToNextLevel;
+            decimal cXP = GamePlayer.Experience;
+            GameController._MainContainerView.pb_ExpBar.Maximum = (int)xpToLvl;
+            GameController._MainContainerView.pb_ExpBar.Value = (int)cXP;
         }
 
         //Retorna valor com base em um bonus extra
@@ -180,14 +266,13 @@ namespace HavanaRPG.Model
             GamePlayer.DefensePts = newDef;
         }
 
-        //Ajusta o XP com base no xp recebido
+        //Ajusta o XP atual com base no xp recebido
         public static void UpdateNewXp(decimal xp)
         {
             var currentXP = GamePlayer.Experience;
             var currentLvl = GamePlayer.PlayerLevel;
             var nextLevel = currentLvl + 1;
-            var xpTable = ExperienceTable.XpTable;
-            var xpToNextLevel = xpTable[(int)nextLevel - 1];
+            var xpToNextLevel = UpdateReturnXpNextLevel(currentLvl, true);
             var newXp = currentXP + xp;
             var remainingXp = newXp;
             if (newXp >= xpToNextLevel)
@@ -205,6 +290,18 @@ namespace HavanaRPG.Model
             {
                 GamePlayer.Experience = newXp;
             }
+        }
+
+        //Retorna o valor de xp para o proximo level
+        public static decimal UpdateReturnXpNextLevel(decimal currentLevel, bool updateInPlayer)
+        {
+            var xpTable = ExperienceTable.XpTable;
+            var xpToNextLevel = xpTable[(int)currentLevel];
+            if (updateInPlayer)
+            {
+                GamePlayer.ExpToNextLevel = xpToNextLevel;
+            }
+            return xpToNextLevel;
         }
 
         //checa se player tem gold comparado a um valor
@@ -273,19 +370,19 @@ namespace HavanaRPG.Model
             if (type == "ep")
             {
                 display = "ep";
-                BattleLib.PlayerGainEnergy(totalValue);
+                BattleLib.RealPlayerGainEnergy(totalValue);
                 displayPoints = GamePlayer.EnergyPts.ToString();
             }
             else
             {
                 display = "hp";
-                BattleLib.PlayerGainHp(totalValue);
+                BattleLib.RealPlayerGainHp(totalValue);
                 displayPoints = GamePlayer.HealthPts.ToString();
             }
 
             msg += "\n" + "Restored " + totalValue + display;
             msg += "\n" + "Current " + display.ToUpper() + ": " + displayPoints;
-            RpgLib.ShowLogStatusMsg(msg);
+            GameplayLib.ShowLogStatusMsg(msg);
         }
 
         //Adiciona efeito no player que corta os stats pela metade
@@ -322,6 +419,8 @@ namespace HavanaRPG.Model
             {
                 msg = msg.ToUpper();
             }
+
+            GameController._MainContainerView.StatusLogBox.Text += "\n" + msg;
         }
 
         //Avança o período do dia se for preciso, avança um dia na data do jogo

@@ -1,5 +1,3 @@
-C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csprojResolveAssemblyReference.cache
-C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.HavanaView.resources
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Properties.Resources.resources
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csproj.GenerateResource.Cache
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csproj.CoreCompileInputs.cache
@@ -13,3 +11,8 @@ C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\o
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Views\Controls\BaseForm.resx
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Views\Controls\BaseForm.cs
 C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\bin\Debug\Views\Controls\BaseForm.Designer.cs
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.PlayerCreationView.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.StartMainMenuView.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.csprojResolveAssemblyReference.cache
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.MainGameStartContainer.resources
+C:\Users\calvi\Documents\MEGAsync\HavanaGames\HavanaRPG\MySolution\TesteCalvin\obj\Debug\HavanaRPG.Views.MainContainerView.resources

@@ -15,7 +15,7 @@ namespace HavanaRPG.Model.NPCs
             Job = "Mayor";
             Greetings.Add("Hello!");
             Greetings.Add("Hey! Wanna Talk?");
-            Greetings.Add("Hi " + RpgLib.GamePlayer.FormatCall + "!");
+            Greetings.Add("Hi " + GameplayLib.GamePlayer.CallTitle + "!");
             ByeTalk.Add("See you!");
             ByeTalk.Add("Bye.");
             QuestionTalks.Add("Do you need some directions?");

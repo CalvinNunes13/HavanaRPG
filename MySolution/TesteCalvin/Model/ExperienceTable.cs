@@ -8,28 +8,28 @@ namespace HavanaRPG.Model
 {
     public class ExperienceTable
     {
-        public static int ExpLevel1 = 0;
-        public static int ExpLevel2 = 0;
-        public static int ExpLevel3 = 0;
-        public static int ExpLevel4 = 0;
-        public static int ExpLevel5 = 0;
-        public static int ExpLevel6 = 0;
-        public static int ExpLevel7 = 0;
-        public static int ExpLevel8 = 0;
-        public static int ExpLevel9 = 0;
-        public static int ExpLevel10 = 0;
-        public static int ExpLevel11 = 0;
-        public static int ExpLevel12 = 0;
-        public static int ExpLevel13 = 0;
-        public static int ExpLevel14 = 0;
-        public static int ExpLevel15 = 0;
-        public static int ExpLevel16 = 0;
-        public static int ExpLevel17 = 0;
-        public static int ExpLevel18 = 0;
-        public static int ExpLevel19 = 0;
-        public static int ExpLevel20 = 0;
+        public static decimal ExpLevel1 = 0;
+        public static decimal ExpLevel2 = 50;
+        public static decimal ExpLevel3 = 75;
+        public static decimal ExpLevel4 = 120;
+        public static decimal ExpLevel5 = 200;
+        public static decimal ExpLevel6 = 240;
+        public static decimal ExpLevel7 = 290;
+        public static decimal ExpLevel8 = 340;
+        public static decimal ExpLevel9 = 400;
+        public static decimal ExpLevel10 = 460;
+        public static decimal ExpLevel11 = 520;
+        public static decimal ExpLevel12 = 585;
+        public static decimal ExpLevel13 = 650;
+        public static decimal ExpLevel14 = 720;
+        public static decimal ExpLevel15 = 800;
+        public static decimal ExpLevel16 = 880;
+        public static decimal ExpLevel17 = 960;
+        public static decimal ExpLevel18 = 1050;
+        public static decimal ExpLevel19 = 1175;
+        public static decimal ExpLevel20 = 1290;
 
-        public static List<int> XpTable = new List<int>(new int[] {
+        public static List<decimal> XpTable = new List<decimal>(new decimal[] {
             ExpLevel1,
             ExpLevel2,
             ExpLevel3,

@@ -1,6 +1,6 @@
 ﻿namespace HavanaRPG.Views
 {
-    partial class HavanaView
+    partial class MainContainerView
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -32,21 +32,21 @@
             this.cb_Main = new System.Windows.Forms.ToolStripComboBox();
             this.cb_two = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.txt_PlayerName = new System.Windows.Forms.ToolStripLabel();
             this.pb_ExpBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.lbl_PlayerName = new System.Windows.Forms.ToolStripLabel();
-            this.lbl_level = new System.Windows.Forms.ToolStripLabel();
+            this.txt_Level = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.lbl_Gold = new System.Windows.Forms.ToolStripLabel();
+            this.txt_Gold = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.StatusLogBox = new System.Windows.Forms.TextBox();
-            this.panelBoxBottom = new System.Windows.Forms.Panel();
-            this.txt_dateTime = new System.Windows.Forms.Label();
-            this.txt_PlayerLocation = new System.Windows.Forms.Label();
             this.txt_PlayerHp = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.txt_PlayerEp = new System.Windows.Forms.ToolStripLabel();
+            this.StatusLogBox = new System.Windows.Forms.TextBox();
+            this.panelBoxBottom = new System.Windows.Forms.Panel();
             this.img_MapButton = new System.Windows.Forms.PictureBox();
+            this.txt_PlayerLocation = new System.Windows.Forms.Label();
+            this.txt_dateTime = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panelBoxBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_MapButton)).BeginInit();
@@ -61,21 +61,22 @@
             this.cb_Main,
             this.cb_two,
             this.toolStripSeparator1,
-            this.lbl_PlayerName,
+            this.txt_PlayerName,
             this.pb_ExpBar,
             this.toolStripSeparator2,
-            this.lbl_level,
+            this.txt_Level,
             this.toolStripSeparator5,
-            this.lbl_Gold,
+            this.txt_Gold,
             this.toolStripSeparator4,
             this.txt_PlayerHp,
             this.toolStripSeparator6,
             this.txt_PlayerEp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1008, 75);
+            this.toolStrip1.Size = new System.Drawing.Size(1022, 75);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Visible = false;
             // 
             // cb_Main
             // 
@@ -86,7 +87,7 @@
             "Exit Game",
             ""});
             this.cb_Main.Name = "cb_Main";
-            this.cb_Main.Size = new System.Drawing.Size(150, 75);
+            this.cb_Main.Size = new System.Drawing.Size(150, 23);
             // 
             // cb_two
             // 
@@ -97,12 +98,19 @@
             "Map",
             "Status"});
             this.cb_two.Name = "cb_two";
-            this.cb_two.Size = new System.Drawing.Size(150, 75);
+            this.cb_two.Size = new System.Drawing.Size(150, 23);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 75);
+            // 
+            // txt_PlayerName
+            // 
+            this.txt_PlayerName.AutoSize = false;
+            this.txt_PlayerName.Name = "txt_PlayerName";
+            this.txt_PlayerName.Size = new System.Drawing.Size(110, 75);
+            this.txt_PlayerName.Text = "Name";
             // 
             // pb_ExpBar
             // 
@@ -117,88 +125,32 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 75);
             // 
-            // lbl_PlayerName
+            // txt_Level
             // 
-            this.lbl_PlayerName.AutoSize = false;
-            this.lbl_PlayerName.Name = "lbl_PlayerName";
-            this.lbl_PlayerName.Size = new System.Drawing.Size(110, 75);
-            this.lbl_PlayerName.Text = "Name";
-            // 
-            // lbl_level
-            // 
-            this.lbl_level.AutoSize = false;
-            this.lbl_level.Font = new System.Drawing.Font("Palatino Linotype", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_level.Name = "lbl_level";
-            this.lbl_level.Size = new System.Drawing.Size(50, 72);
-            this.lbl_level.Text = "0";
+            this.txt_Level.AutoSize = false;
+            this.txt_Level.Font = new System.Drawing.Font("Palatino Linotype", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Level.Name = "txt_Level";
+            this.txt_Level.Size = new System.Drawing.Size(50, 72);
+            this.txt_Level.Text = "0";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 75);
             // 
-            // lbl_Gold
+            // txt_Gold
             // 
-            this.lbl_Gold.AutoSize = false;
-            this.lbl_Gold.Font = new System.Drawing.Font("Palatino Linotype", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Gold.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lbl_Gold.Name = "lbl_Gold";
-            this.lbl_Gold.Size = new System.Drawing.Size(80, 72);
-            this.lbl_Gold.Text = "000";
+            this.txt_Gold.AutoSize = false;
+            this.txt_Gold.Font = new System.Drawing.Font("Palatino Linotype", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Gold.ForeColor = System.Drawing.Color.Goldenrod;
+            this.txt_Gold.Name = "txt_Gold";
+            this.txt_Gold.Size = new System.Drawing.Size(80, 72);
+            this.txt_Gold.Text = "000";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 75);
-            // 
-            // StatusLogBox
-            // 
-            this.StatusLogBox.AcceptsReturn = true;
-            this.StatusLogBox.AcceptsTab = true;
-            this.StatusLogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusLogBox.Location = new System.Drawing.Point(496, 0);
-            this.StatusLogBox.MaxLength = 999999;
-            this.StatusLogBox.MinimumSize = new System.Drawing.Size(512, 150);
-            this.StatusLogBox.Multiline = true;
-            this.StatusLogBox.Name = "StatusLogBox";
-            this.StatusLogBox.ReadOnly = true;
-            this.StatusLogBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.StatusLogBox.Size = new System.Drawing.Size(512, 150);
-            this.StatusLogBox.TabIndex = 1;
-            // 
-            // panelBoxBottom
-            // 
-            this.panelBoxBottom.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panelBoxBottom.Controls.Add(this.img_MapButton);
-            this.panelBoxBottom.Controls.Add(this.StatusLogBox);
-            this.panelBoxBottom.Controls.Add(this.txt_PlayerLocation);
-            this.panelBoxBottom.Controls.Add(this.txt_dateTime);
-            this.panelBoxBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBoxBottom.Location = new System.Drawing.Point(0, 602);
-            this.panelBoxBottom.Name = "panelBoxBottom";
-            this.panelBoxBottom.Size = new System.Drawing.Size(1008, 150);
-            this.panelBoxBottom.TabIndex = 2;
-            // 
-            // txt_dateTime
-            // 
-            this.txt_dateTime.Location = new System.Drawing.Point(12, 11);
-            this.txt_dateTime.MinimumSize = new System.Drawing.Size(140, 30);
-            this.txt_dateTime.Name = "txt_dateTime";
-            this.txt_dateTime.Size = new System.Drawing.Size(140, 30);
-            this.txt_dateTime.TabIndex = 0;
-            this.txt_dateTime.Text = "Morning - 01/01/431";
-            this.txt_dateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txt_PlayerLocation
-            // 
-            this.txt_PlayerLocation.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_PlayerLocation.Location = new System.Drawing.Point(3, 41);
-            this.txt_PlayerLocation.MinimumSize = new System.Drawing.Size(160, 30);
-            this.txt_PlayerLocation.Name = "txt_PlayerLocation";
-            this.txt_PlayerLocation.Size = new System.Drawing.Size(160, 30);
-            this.txt_PlayerLocation.TabIndex = 1;
-            this.txt_PlayerLocation.Text = "Monxevis";
-            this.txt_PlayerLocation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txt_PlayerHp
             // 
@@ -221,31 +173,86 @@
             this.txt_PlayerEp.Size = new System.Drawing.Size(95, 75);
             this.txt_PlayerEp.Text = "0 / 0";
             // 
+            // StatusLogBox
+            // 
+            this.StatusLogBox.AcceptsReturn = true;
+            this.StatusLogBox.AcceptsTab = true;
+            this.StatusLogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusLogBox.Enabled = false;
+            this.StatusLogBox.Location = new System.Drawing.Point(507, 0);
+            this.StatusLogBox.MaxLength = 999999;
+            this.StatusLogBox.MinimumSize = new System.Drawing.Size(512, 150);
+            this.StatusLogBox.Multiline = true;
+            this.StatusLogBox.Name = "StatusLogBox";
+            this.StatusLogBox.ReadOnly = true;
+            this.StatusLogBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.StatusLogBox.Size = new System.Drawing.Size(512, 150);
+            this.StatusLogBox.TabIndex = 1;
+            // 
+            // panelBoxBottom
+            // 
+            this.panelBoxBottom.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelBoxBottom.Controls.Add(this.img_MapButton);
+            this.panelBoxBottom.Controls.Add(this.StatusLogBox);
+            this.panelBoxBottom.Controls.Add(this.txt_PlayerLocation);
+            this.panelBoxBottom.Controls.Add(this.txt_dateTime);
+            this.panelBoxBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBoxBottom.Location = new System.Drawing.Point(0, 616);
+            this.panelBoxBottom.Name = "panelBoxBottom";
+            this.panelBoxBottom.Size = new System.Drawing.Size(1022, 150);
+            this.panelBoxBottom.TabIndex = 2;
+            this.panelBoxBottom.Visible = false;
+            // 
             // img_MapButton
             // 
             this.img_MapButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.img_MapButton.Image = global::HavanaRPG.Properties.Resources.menu_map_image;
             this.img_MapButton.InitialImage = global::HavanaRPG.Properties.Resources.menu_map_image;
             this.img_MapButton.Location = new System.Drawing.Point(278, 11);
             this.img_MapButton.MinimumSize = new System.Drawing.Size(212, 127);
             this.img_MapButton.Name = "img_MapButton";
             this.img_MapButton.Size = new System.Drawing.Size(212, 127);
+            this.img_MapButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.img_MapButton.TabIndex = 2;
             this.img_MapButton.TabStop = false;
             this.img_MapButton.Click += new System.EventHandler(this.img_MapButton_Click);
             // 
-            // HavanaView
+            // txt_PlayerLocation
+            // 
+            this.txt_PlayerLocation.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_PlayerLocation.Location = new System.Drawing.Point(-4, 103);
+            this.txt_PlayerLocation.MinimumSize = new System.Drawing.Size(160, 30);
+            this.txt_PlayerLocation.Name = "txt_PlayerLocation";
+            this.txt_PlayerLocation.Size = new System.Drawing.Size(250, 35);
+            this.txt_PlayerLocation.TabIndex = 1;
+            this.txt_PlayerLocation.Text = "Monxevis";
+            this.txt_PlayerLocation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txt_dateTime
+            // 
+            this.txt_dateTime.Location = new System.Drawing.Point(-3, 11);
+            this.txt_dateTime.MinimumSize = new System.Drawing.Size(140, 30);
+            this.txt_dateTime.Name = "txt_dateTime";
+            this.txt_dateTime.Size = new System.Drawing.Size(250, 35);
+            this.txt_dateTime.TabIndex = 0;
+            this.txt_dateTime.Text = "Morning - 01/01/431";
+            this.txt_dateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // MainContainerView
             // 
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1008, 752);
+            this.ClientSize = new System.Drawing.Size(1022, 766);
             this.ControlBox = false;
             this.Controls.Add(this.panelBoxBottom);
             this.Controls.Add(this.toolStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.MinimumSize = new System.Drawing.Size(1024, 768);
-            this.Name = "HavanaView";
+            this.Name = "MainContainerView";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.HavanaView_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panelBoxBottom.ResumeLayout(false);
@@ -263,9 +270,9 @@
         public System.Windows.Forms.ToolStripComboBox cb_Main;
         public System.Windows.Forms.ToolStripComboBox cb_two;
         public System.Windows.Forms.ToolStripProgressBar pb_ExpBar;
-        public System.Windows.Forms.ToolStripLabel lbl_PlayerName;
-        public System.Windows.Forms.ToolStripLabel lbl_level;
-        public System.Windows.Forms.ToolStripLabel lbl_Gold;
+        public System.Windows.Forms.ToolStripLabel txt_PlayerName;
+        public System.Windows.Forms.ToolStripLabel txt_Level;
+        public System.Windows.Forms.ToolStripLabel txt_Gold;
         public System.Windows.Forms.TextBox StatusLogBox;
         public System.Windows.Forms.Panel panelBoxBottom;
         public System.Windows.Forms.Label txt_PlayerLocation;

@@ -21,6 +21,11 @@ namespace HavanaRPG.Model
 
         public Location()
         {
+            Places = new List<Location>();
+            Shops = new List<Shop>();
+            Npcs = new List<Npc>();
+            PossibleDestinations = new List<Location>();
+            PossibleEvents = new List<RandomEvent>();
             LocalName = "Local";
             //SpecificView = new LocationsView();
         }

@@ -13,21 +13,20 @@ namespace HavanaRPG.Model
     public class HavanaLib
     {
         public enum raceNames { Human, Orc, Elf, Naga, Dwarf };
-        public enum ClassNames { Warrior, Sorcerer, Druid, Paladin, Archer, Monk, Thief };
+        public enum ClassNames { None, Warrior, Sorcerer, Druid, Paladin, Archer, Monk, Thief };
         public enum CitiesNames { Leto, Monxevis };
         public enum Locations { Limbo, Leto, Monxevis, Gibraltar_Forest, };
-        public enum StatusNames { Blind, Slow, Confused };
+        public enum StatsNames { Strenght, Magic, Dexterity, Creativity, Winsdom}
+        public enum StatusNames { None, Blind, Slow, Confused };
         public enum DayTime { Morning, Afternoon, Night };
-        public enum AdvDvd { Resistance, Advantage, Normal, Disadvantage, Weakness }
-        public enum Elements { Water, Fire, Air, Earth, Dark, Light, Physical }
-        public enum Sex { Male, Female, None };
+        public enum AdvDvd { None, Resistance, Advantage, Normal, Disadvantage, Weakness }
+        public enum Elements { None, Water, Fire, Air, Earth, Dark, Light, Physical }
+        public enum Gender { None, Male, Female };
 
         public HavanaLib() { }
 
         public static void NewGame()
         {
-            ViewsController.CloseCurrentForm();
-            //ViewsController.OpenNewForm(new PlayerMainView());
         }
 
         public static void SaveGame()
@@ -55,6 +54,20 @@ namespace HavanaRPG.Model
                 MsgBox("ERROR WHILE LOADING! The game will not start.\n" + ex.Message + "\n Contact the developers at HavanaRpg@outlook.com", "error", "ERROR");
             }
             
+        }
+
+        public static ClassNames ReturnEnumClassByString(string value)
+        {
+            dynamic enumOption;
+            enumOption = (ClassNames)Enum.Parse(typeof(ClassNames), value);
+            return enumOption;
+        }
+
+        public static Gender ReturnEnumGenderByString(string value)
+        {
+            dynamic enumOption;
+            enumOption = (Gender)Enum.Parse(typeof(Gender), value);
+            return enumOption;
         }
 
         public static string ToProperCase(string text)
@@ -115,9 +128,9 @@ namespace HavanaRPG.Model
         public static string ReturnDisplayDateAndTime()
         {
             string displayDate = "";
-            displayDate = RpgLib.GameDateDay.ToString() + "/";
-            displayDate = displayDate + RpgLib.GameDateMonth.ToString() + "/";
-            displayDate = displayDate + RpgLib.GameDateYear.ToString();
+            displayDate = GameplayLib.GameDateDay.ToString() + "/";
+            displayDate = displayDate + GameplayLib.GameDateMonth.ToString() + "/";
+            displayDate = displayDate + GameplayLib.GameDateYear.ToString();
             return displayDate;
         }
 

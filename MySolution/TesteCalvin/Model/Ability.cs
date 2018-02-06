@@ -33,6 +33,7 @@ namespace HavanaRPG.Model
 
         public Ability()
         {
+            Elements = new List<HavanaLib.Elements>();
             AbilityName = "";
             Description = "";
             RequiredLvl = 0;

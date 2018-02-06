@@ -24,8 +24,8 @@ namespace HavanaRPG.Model.Spells
         public override void BasicEffect()
         {
             base.BasicEffect();
-            BattleLib.PlayerLoseEnergy(EnergyCost);
-            RpgLib.RestorePlayer(DiceSides, DiceRolls, DiceBonusPts, "hp");
+            BattleLib.RealPlayerLoseEnergy(EnergyCost);
+            GameplayLib.RestorePlayer(DiceSides, DiceRolls, DiceBonusPts, "hp");
         }
     }
 }

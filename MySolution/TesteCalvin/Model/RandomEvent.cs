@@ -12,13 +12,15 @@ namespace HavanaRPG.Model
         public string EventName { get; set; }
         public string Message { get; set; }
         public decimal Probability { get; set; } //0 to 100
-        
-        public RandomEvent() { }
+
+        public RandomEvent()
+        {
+            Message = "";
+        }
 
         public virtual void OnEventCall()
         {
-            Message = "";
-            RpgLib.ShowLogStatusMsg(Message);
+            GameplayLib.ShowLogStatusMsg(Message);
         }
     }
 }

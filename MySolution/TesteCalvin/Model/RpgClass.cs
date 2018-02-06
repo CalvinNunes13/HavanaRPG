@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using HavanaRPG.Model.Weapons;
+using HavanaRPG.Model.Spells;
+using HavanaRPG.Model.Skills;
+using HavanaRPG.Model.Armors;
+using HavanaRPG.Model.Items;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace HavanaRPG.Model
 {
@@ -18,15 +24,19 @@ namespace HavanaRPG.Model
         public decimal InitialHP { get; set; }
         public decimal InitialEP { get; set; }
         public decimal InitialGold { get; set; }
+        public decimal InitialAlignment { get; set; }
         public List<Item> InitialItens { get; set; }
         public List<Ability> InitialSkills { get; set; }
         public List<Ability> InitialSpells { get; set; }
         public decimal HpPerLevel { get; set; }
         public decimal EpPerLevel { get; set; }
+        public string ImgSource { get; set; }
 
         public RpgClass()
         {
-
+            InitialItens = new List<Item>();
+            InitialSkills = new List<Ability>();
+            InitialSpells = new List<Ability>();
         }
 
         public override string ToString()

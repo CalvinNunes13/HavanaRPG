@@ -1,5 +1,6 @@
 ﻿using HavanaRPG.Controller;
 using System.Windows.Forms;
+using HavanaRPG.Model;
 
 namespace HavanaRPG.Views.Controls
 {
@@ -35,7 +36,7 @@ namespace HavanaRPG.Views.Controls
             // 
             // BaseForm
             // 
-            this.MdiParent = GameController.HavanaViewMdi;
+            this.MdiParent = GameController._MainContainerView;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 508);

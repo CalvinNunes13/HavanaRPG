@@ -17,31 +17,38 @@ namespace HavanaRPG.Controller
         public static bool PlayerViewOpen = false;
         public static bool ShopViewOpen = false;
         public static bool TalkViewOpen = false;
+        public static bool StartMainMenuView = true;
         public static Form CurrentForm;
         public static Form LastForm;
-        public static string CurrentViewName = "STARTMENU";
-        public static string LastViewName = "STARTMENU";
+        public static string CurrentViewName = "STARTMAINMENUVIEW";
+        public static string LastViewName = "STARTMAINMENUVIEW";
 
         public static void LoadNewView(Form newForm)
         {
+            //if (!newForm.IsMdiChild)
+            //{
+            //    newForm.MdiParent = GameController._MainContainerView;                
+            //}
             newForm.Show();
             SetOpenClosed(newForm.Name);
         }
 
         public static void OpenNewForm(Form newFormView)
         {
-            Application.Run(newFormView);
+            SetOpenClosed(newFormView.Name);
+            newFormView.Show();
         }
 
         public static void SaveLastView()
         {
-            LastForm = Form.ActiveForm;
+            LastForm = GameController._MainContainerView.ActiveMdiChild;
         }
 
-        public static void CloseCurrentForm()
+        public static void CloseForm(Form formToClose)
         {
             SaveLastView();
-            Form.ActiveForm.Close();
+            SetOpenClosed(formToClose.Name);
+            formToClose.Close();
         }
 
         public static void SetOpenClosed(string viewName)
@@ -49,6 +56,17 @@ namespace HavanaRPG.Controller
             viewName = viewName.ToUpper();
             switch (viewName)
             {
+                case "STARTMAINMENUVIEW":
+                    if (StartMainMenuView)
+                    {
+                        StartMainMenuView = false;
+                    }
+                    else
+                    {
+                        StartMainMenuView = true;
+                    }
+                    break;
+
                 case "BATTLEVIEW":
                     if (BattleViewOpen)
                     {

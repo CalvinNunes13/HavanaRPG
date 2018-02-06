@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace HavanaRPG.Model
-{
+{  
     class BattleLib
     {
+        public static Player TempPlayer = new Player("", HavanaLib.ClassNames.Warrior, HavanaLib.Gender.None); //usado durante uma batalha
+        public static Player BeforeBattlePlayer = new Player("", HavanaLib.ClassNames.Warrior, HavanaLib.Gender.None); //salva o estado atual do player antes da batalha, caso precise voltar os dados depois
+
         public static bool CheckIsDeath(decimal hp)
         {
             if (hp <= 0)
@@ -17,7 +20,7 @@ namespace HavanaRPG.Model
             return false;
         }
 
-        public static decimal DoAttack(decimal atkPts, decimal def, decimal hp, HavanaLib.AdvDvd EnemyAdvDvd)
+        public static decimal DoAttack(decimal atkPts, decimal def, decimal hp, HavanaLib.AdvDvd enemyAdvDvd)
         {
             decimal finalHp = 0;
             decimal totalAtkPts = 0;
@@ -25,19 +28,19 @@ namespace HavanaRPG.Model
             {
                 totalAtkPts = atkPts;
                 finalHp = hp;
-                if (EnemyAdvDvd == HavanaLib.AdvDvd.Resistance)
+                if (enemyAdvDvd == HavanaLib.AdvDvd.Resistance)
                 {
                     totalAtkPts = Math.Floor(atkPts + (atkPts * (decimal)0.5));
                 }
-                else if (EnemyAdvDvd == HavanaLib.AdvDvd.Advantage)
+                else if (enemyAdvDvd == HavanaLib.AdvDvd.Advantage)
                 {
                     totalAtkPts = Math.Floor(atkPts + (atkPts * (decimal)0.25));
                 }
-                else if (EnemyAdvDvd == HavanaLib.AdvDvd.Disadvantage)
+                else if (enemyAdvDvd == HavanaLib.AdvDvd.Disadvantage)
                 {
                     totalAtkPts = Math.Floor(atkPts - (atkPts * (decimal)0.25));
                 }
-                else if (EnemyAdvDvd == HavanaLib.AdvDvd.Weakness)
+                else if (enemyAdvDvd == HavanaLib.AdvDvd.Weakness)
                 {
                     totalAtkPts = Math.Floor(atkPts - (atkPts * (decimal)0.5));
                 }
@@ -57,55 +60,155 @@ namespace HavanaRPG.Model
             }
             catch (Exception ex)
             {
-                HavanaLib.MsgBox("Erro ao aplicar a função 'DoAttack' \n" + ex.Message);
+                HavanaLib.MsgBox("Error applying function: 'DoAttack' \n" + ex.Message);
                 return hp;
             }
             return finalHp;
         }
-
-        public static void PlayerLoseHp(decimal lostValue)
+        
+        //Temp Player//
+        public static void IncreasePlayerStatTemp(decimal value, HavanaLib.StatsNames stat)
         {
-            var hp = RpgLib.GamePlayer.HealthPts;
+            switch (stat)
+            {
+                case HavanaLib.StatsNames.Strenght:
+                    TempPlayer.Strenght += value;
+                    break;
+
+                case HavanaLib.StatsNames.Magic:
+                    TempPlayer.Magic += value;
+                    break;
+
+                case HavanaLib.StatsNames.Dexterity:
+                    TempPlayer.Dexterity += value;
+                    break;
+
+                case HavanaLib.StatsNames.Creativity:
+                    TempPlayer.Creativity += value;
+                    break;
+
+                case HavanaLib.StatsNames.Winsdom:
+                    TempPlayer.Winsdom += value;
+                    break;
+            }
+        }
+
+        public static void TempPlayerLoseHP(decimal lostValue)
+        {
+            var hp = TempPlayer.HealthPts;
             hp = hp - lostValue;
             if (hp < 0)
             {
                 hp = 0;
             }
-            RpgLib.GamePlayer.HealthPts = hp;
+            TempPlayer.HealthPts = hp;
         }
 
-        public static void PlayerGainHp(decimal value)
+        public static void TempPlayerGainHp(decimal value)
         {
-            var hp = RpgLib.GamePlayer.HealthPts;
+            var hp = TempPlayer.HealthPts;
             hp = hp + value;
-            if (hp > RpgLib.GamePlayer.MaxHealthPts)
+            if (hp > TempPlayer.MaxHealthPts)
             {
-                hp = RpgLib.GamePlayer.MaxHealthPts;
+                hp = TempPlayer.MaxHealthPts;
             }
-            RpgLib.GamePlayer.HealthPts = hp;
+            TempPlayer.HealthPts = hp;
         }
 
 
-        public static void PlayerLoseEnergy(decimal energyValue)
+        public static void TempPlayerLoseEnergy(decimal energyValue)
         {
-            var ep = RpgLib.GamePlayer.EnergyPts;
+            var ep = TempPlayer.EnergyPts;
             ep = ep - energyValue;
             if (ep < 0)
             {
                 ep = 0;
             }
-            RpgLib.GamePlayer.EnergyPts = ep;
+            TempPlayer.EnergyPts = ep;
         }
 
-        public static void PlayerGainEnergy(decimal value)
+        public static void TempPlayerGainEnergy(decimal value)
         {
-            var ep = RpgLib.GamePlayer.EnergyPts;
+            var ep = TempPlayer.EnergyPts;
             ep = ep + value;
-            if (ep > RpgLib.GamePlayer.MaxEnergyPts)
+            if (ep > TempPlayer.MaxEnergyPts)
             {
-                ep = RpgLib.GamePlayer.MaxEnergyPts;
+                ep = TempPlayer.MaxEnergyPts;
             }
-            RpgLib.GamePlayer.EnergyPts = ep;
+            TempPlayer.EnergyPts = ep;
+        }
+
+
+        //Real Player//
+        public static void IncreasePlayerStatReal(decimal value, HavanaLib.StatsNames stat)
+        {
+            switch (stat)
+            {
+                case HavanaLib.StatsNames.Strenght:
+                    GameplayLib.GamePlayer.Strenght += value;
+                    break;
+
+                case HavanaLib.StatsNames.Magic:
+                    GameplayLib.GamePlayer.Magic += value;
+                    break;
+
+                case HavanaLib.StatsNames.Dexterity:
+                    GameplayLib.GamePlayer.Dexterity += value;
+                    break;
+
+                case HavanaLib.StatsNames.Creativity:
+                    GameplayLib.GamePlayer.Creativity += value;
+                    break;
+
+                case HavanaLib.StatsNames.Winsdom:
+                    GameplayLib.GamePlayer.Winsdom += value;
+                    break;
+            }
+        }
+
+        public static void RealPlayerLoseHP(decimal lostValue)
+        {
+            var hp = GameplayLib.GamePlayer.HealthPts;
+            hp = hp - lostValue;
+            if (hp < 0)
+            {
+                hp = 0;
+            }
+            GameplayLib.GamePlayer.HealthPts = hp;
+        }
+
+        public static void RealPlayerGainHp(decimal value)
+        {
+            var hp = GameplayLib.GamePlayer.HealthPts;
+            hp = hp + value;
+            if (hp > GameplayLib.GamePlayer.MaxHealthPts)
+            {
+                hp = GameplayLib.GamePlayer.MaxHealthPts;
+            }
+            GameplayLib.GamePlayer.HealthPts = hp;
+        }
+
+
+        public static void RealPlayerLoseEnergy(decimal energyValue)
+        {
+            var ep = GameplayLib.GamePlayer.EnergyPts;
+            ep = ep - energyValue;
+            if (ep < 0)
+            {
+                ep = 0;
+            }
+            GameplayLib.GamePlayer.EnergyPts = ep;
+        }
+
+        public static void RealPlayerGainEnergy(decimal value)
+        {
+            var ep = GameplayLib.GamePlayer.EnergyPts;
+            ep = ep + value;
+            if (ep > GameplayLib.GamePlayer.MaxEnergyPts)
+            {
+                ep = GameplayLib.GamePlayer.MaxEnergyPts;
+            }
+            GameplayLib.GamePlayer.EnergyPts = ep;
         }
 
         public static void UseAbility(Ability ability)
@@ -123,7 +226,7 @@ namespace HavanaRPG.Model
             dynamic target;
             if (playerTarget)
             {
-                target = RpgLib.GamePlayer;
+                target = GameplayLib.GamePlayer;
             }
             else
             {
@@ -159,31 +262,34 @@ namespace HavanaRPG.Model
             }
         }
 
-        public static void UseDefend()
+        public static void RealPlayerUseDefend()
         {
-            decimal defPts = RpgLib.GamePlayer.DefensePts;
+            decimal defPts = GameplayLib.GamePlayer.DefensePts;
             defPts = defPts + (defPts * (decimal)0.5);
-            RpgLib.GamePlayer.CurrentDefPts = defPts;
+            GameplayLib.GamePlayer.CurrentDefPts = defPts;
         }
 
         public static void OnBattleStart()
         {
-
+            BeforeBattlePlayer = GameplayLib.GamePlayer;
+            TempPlayer = GameplayLib.GamePlayer;
         }
 
         public static void OnBattleEnd()
         {
+            GameplayLib.GamePlayer.HealthPts = TempPlayer.HealthPts;
+            GameplayLib.GamePlayer.EnergyPts = TempPlayer.EnergyPts;
         }
 
         public static void RestoreAllStats()
         {
-            RpgLib.GamePlayer.Strenght = RpgLib.GamePlayer.MaxStrenght;
-            RpgLib.GamePlayer.Dexterity = RpgLib.GamePlayer.MaxDexterity;
-            RpgLib.GamePlayer.Magic = RpgLib.GamePlayer.MaxMagic;
-            RpgLib.GamePlayer.Creativity = RpgLib.GamePlayer.MaxCreativity;
-            RpgLib.GamePlayer.Winsdom = RpgLib.GamePlayer.MaxWinsdom;
-            RpgLib.GamePlayer.StatusEffects.Clear();
-            RpgLib.GamePlayer.CurrentDefPts = RpgLib.GamePlayer.DefensePts;
+            GameplayLib.GamePlayer.Strenght = GameplayLib.GamePlayer.MaxStrenght;
+            GameplayLib.GamePlayer.Dexterity = GameplayLib.GamePlayer.MaxDexterity;
+            GameplayLib.GamePlayer.Magic = GameplayLib.GamePlayer.MaxMagic;
+            GameplayLib.GamePlayer.Creativity = GameplayLib.GamePlayer.MaxCreativity;
+            GameplayLib.GamePlayer.Winsdom = GameplayLib.GamePlayer.MaxWinsdom;
+            GameplayLib.GamePlayer.StatusEffects.Clear();
+            GameplayLib.GamePlayer.CurrentDefPts = GameplayLib.GamePlayer.DefensePts;
         }
 
     }
