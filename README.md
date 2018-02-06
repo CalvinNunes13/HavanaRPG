@@ -5,10 +5,10 @@ This game is a text-based RPG with graphical representations.
 
 In this game you are free to choose your own destiny,be good or be evil, fight creatures, explore the world and live your magical medieval life taking with you all the consequences of your actions.
 
-*Development Start: 29/01/2018
-*Initial Prevision: first quarter of 2019
+Development Start: 29/01/2018<br>
+Initial Prevision: first quarter of 2019
 
-Crew: 
+_Crew:_ 
 - Development and direction: Calvin Nunes
 - Design: Jordan Araújo
 
