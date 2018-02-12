@@ -1,6 +1,6 @@
 ﻿namespace HavanaRPG.Views
 {
-    partial class GameView
+    partial class MapView
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -28,16 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // GameView
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1000, 508);
-            this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "GameView";
-            this.ResumeLayout(false);
-
+            this.components = new System.ComponentModel.Container();
         }
 
         #endregion

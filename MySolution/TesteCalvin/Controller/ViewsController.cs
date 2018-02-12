@@ -10,6 +10,7 @@ namespace HavanaRPG.Controller
 {
     class ViewsController
     {
+        public static MainContainerView _MainContainerView;
         public static bool BattleViewOpen = false;
         public static bool CityViewOpen = false;
         public static bool GameViewOpen = false;
@@ -27,21 +28,70 @@ namespace HavanaRPG.Controller
         {
             //if (!newForm.IsMdiChild)
             //{
-            //    newForm.MdiParent = GameController._MainContainerView;                
+            //    newForm.MdiParent = ViewsController._MainContainerView;                
             //}
             newForm.Show();
             SetOpenClosed(newForm.Name);
         }
 
+        public static void CloseCurrentForm()
+        {
+            _MainContainerView.ActiveMdiChild.Close();
+        }
+
+        
+        public static void OpenNewCloseCurrent(Form newForm, bool saveLast)
+        {
+            OpenNewCloseCurrent(newForm, saveLast, true);
+        }
+
+        public static void OpenNewCloseCurrent(Form newForm, bool saveLast, bool isMdiChild)
+        {
+            if (isMdiChild)
+            {
+                newForm.MdiParent = _MainContainerView;
+            }
+            if (newForm == null)
+            {
+                newForm = LastForm;
+            }
+            SetOpenClosed(newForm.Name);
+            if (saveLast)
+            {
+                SaveLastView();
+            }
+            CloseCurrentForm();
+            newForm.Show();
+        }
+
         public static void OpenNewForm(Form newFormView)
         {
+            OpenNewForm(newFormView, true, true);
+        }
+
+        public static void OpenNewForm(Form newFormView, bool saveLast)
+        {
+
+            OpenNewForm(newFormView, saveLast, true);
+        }
+
+        public static void OpenNewForm(Form newFormView, bool saveLast, bool isMdiChild)
+        {
             SetOpenClosed(newFormView.Name);
+            if (saveLast)
+            {
+                SaveLastView();
+            }
+            if (isMdiChild)
+            {
+                newFormView.MdiParent = ViewsController._MainContainerView;
+            }
             newFormView.Show();
         }
 
         public static void SaveLastView()
         {
-            LastForm = GameController._MainContainerView.ActiveMdiChild;
+            LastForm = ViewsController._MainContainerView.ActiveMdiChild;
         }
 
         public static void CloseForm(Form formToClose)
@@ -120,7 +170,7 @@ namespace HavanaRPG.Controller
                     {
                         PlayerViewOpen = true;
                     }
-                    
+
                     break;
 
                 case "SHOPVIEW":

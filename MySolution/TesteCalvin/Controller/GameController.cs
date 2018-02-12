@@ -1,4 +1,5 @@
 ﻿using HavanaRPG.Model;
+using HavanaRPG.Model.Cities;
 using HavanaRPG.Views;
 using System;
 using System.Collections.Generic;
@@ -11,60 +12,44 @@ namespace HavanaRPG.Controller
 {
     public static class GameController
     {
-        public static MainContainerView _MainContainerView;
         public static bool IsNewGame = true;
-        //public static MainGameStartContainer _MainGameStartContainer;
 
-        public static void ExecuteBasics(MainContainerView MainView/*, MainGameStartContainer MainContainerView*/)
+        //Global Cities
+        public static Leto leto {get; set;}
+
+        public static void ExecuteBasics(MainContainerView MainView)
         {
-            _MainContainerView = MainView;
-            //_MainGameStartContainer = MainContainerView;
+            ViewsController._MainContainerView = MainView;
         }
 
         public static void StartGame()
         {
-            var startView = new StartMainMenuView();
-            startView.Name = "StartMainMenuView";
-            startView.MdiParent = _MainContainerView;
+            var startView = new StartMainMenuView
+            {
+                Name = "StartMainMenuView",
+                MdiParent = ViewsController._MainContainerView
+            };
             ViewsController.LoadNewView(startView);
         }
 
         public static void StartNewGame()
         {
-            var startView = new PlayerCreationView();
-            startView.Name = "PlayerCreationView";
-            ViewsController.LoadNewView(startView);
-        }
-
-        public static void LaunchGameplay()
-        {
-            _MainContainerView.toolStrip1.Visible = true;
-            _MainContainerView.panelBoxBottom.Visible = true;
-            GameplayLib.AdjustExperienceBar();
-            _MainContainerView.txt_PlayerName.Text = GameplayLib.ReturnPlayerNameToDisplay();
-            _MainContainerView.txt_dateTime.Text = HavanaLib.ReturnDisplayDateAndTime();
-            _MainContainerView.txt_PlayerLocation.Text = GameplayLib.ReturnPlayerLocationToDisplay();
-            _MainContainerView.txt_PlayerHp.Text = GameplayLib.ReturnPlayerHPtoDisplay();
-            _MainContainerView.txt_PlayerEp.Text  = GameplayLib.ReturnPlayerEPtoDisplay();
-            _MainContainerView.txt_Gold.Text = GameplayLib.ReturnPlayerGoldToDisplay();
-            _MainContainerView.txt_Level.Text = GameplayLib.ReturnPlayerLevelToDisplay();
-            _MainContainerView.pb_ExpBar.Value = 50; //RpgLib.ReturnPlayerXPtoDisplay();
-            if (IsNewGame)
+            var startView = new PlayerCreationView
             {
-                HavanaLib.MsgBox("So, the journey begins!\n" +
-                    "You, " + GameplayLib.GamePlayer.Name, " are now ready to explore the world and become known by your actions in " + GameplayLib.KingdomName + "!\n" +
-                    "Create your own destiny " + GameplayLib.GamePlayer.CallTitle, "info", "You Journey Begins");
-                IsNewGame = false;
-            }
-        }
+                Name = "PlayerCreationView"
+            };
+            ViewsController.LoadNewView(startView);
+        }             
 
         public static void LoadGame()
         {
             if (LoadGameState() && LoadPlayerInfo())
             {
-                var startView = new GameView();
-                startView.Name = "GameView";
-                startView.MdiParent = _MainContainerView;
+                var startView = new GameView
+                {
+                    Name = "GameView",
+                    MdiParent = ViewsController._MainContainerView
+                };
                 ViewsController.LoadNewView(startView);
             }
             else
@@ -88,16 +73,13 @@ namespace HavanaRPG.Controller
             }
             GameplayLib.GamePlayer.PlayerLocation = newLocal;
             ViewsController.LastViewName = ViewsController.CurrentViewName;
-            CityView cityView = new CityView();
-            cityView.LocationData = travelDestination;
-            ViewsController.CloseForm(_MainContainerView.ActiveMdiChild);
-            ViewsController.OpenNewForm(cityView);
+            CityView cityView = new CityView
+            {
+                LocationData = travelDestination
+            };
+            ViewsController.CloseForm(ViewsController._MainContainerView.ActiveMdiChild);
+            ViewsController.OpenNewForm(cityView, true);
             //Application.Run(newLocal.SpecificView);
-        }
-
-        public static void UpdateViewMenus()
-        {
-            var view = Form.ActiveForm;
         }
 
         public static bool LoadPlayerInfo()
@@ -120,9 +102,61 @@ namespace HavanaRPG.Controller
 
         }
 
+        // ------ FUNÇOES INICIALIZADORAS DO JOGO -------\\
+        public static void PerformStart(string name, HavanaLib.ClassNames _class, HavanaLib.Gender gender)
+        {
+            SetFirstPlayerData(name, _class, gender);
+            LaunchGameplay();
+        }
+
         public static void SetFirstPlayerData(string name, HavanaLib.ClassNames playerClass, HavanaLib.Gender gender)
         {
             GameplayLib.GamePlayer = new Player(name, playerClass, gender);
+            InitializateCities();
+            InitializatePlaces();
+            GameplayLib.GamePlayer.SetFirstDefaults();
         }
+
+        public static void LaunchGameplay()
+        {
+            ViewsController._MainContainerView.toolStrip1.Visible = true;
+            ViewsController._MainContainerView.panelBoxBottom.Visible = true;
+            ViewsController._MainContainerView.txt_PlayerName.Text = GameplayLib.ReturnPlayerNameToDisplay();
+            ViewsController._MainContainerView.txt_dateTime.Text = GameplayLib.ReturnDisplayDateAndTime();
+            ViewsController._MainContainerView.txt_PlayerLocation.Text = GameplayLib.ReturnPlayerLocationToDisplay();
+            ViewsController._MainContainerView.txt_PlayerHp.Text = GameplayLib.ReturnPlayerHPtoDisplay();
+            ViewsController._MainContainerView.txt_PlayerEp.Text = GameplayLib.ReturnPlayerEPtoDisplay();
+            ViewsController._MainContainerView.txt_Gold.Text = GameplayLib.ReturnPlayerGoldToDisplay();
+            ViewsController._MainContainerView.txt_Level.Text = GameplayLib.ReturnPlayerLevelToDisplay();
+            ViewsController._MainContainerView.pb_ExpBar.Value = 25; //RpgLib.ReturnPlayerXPtoDisplay(); Ajustar para isso
+            GameplayLib.AdjustExperienceBar();
+
+            ViewsController.CloseForm(ViewsController._MainContainerView.ActiveMdiChild);
+            var firstCityView = new CityView();
+            firstCityView.LocationData = leto;
+            ViewsController.OpenNewForm(firstCityView, true);
+            ViewsController.SaveLastView();
+
+            if (IsNewGame)
+            {
+                HavanaLib.MsgBox("So, the journey begins!" + Environment.NewLine +
+                    "You, " + GameplayLib.GamePlayer.Name + ", are now ready to explore the world and become known by your actions in " + GameplayLib.KingdomName + "!" + Environment.NewLine +
+                    "Create your own destiny " + GameplayLib.GamePlayer.CallTitle + ".", "info", "Your Journey Begins");
+                IsNewGame = false;
+            }
+            GameplayLib.RunGameTime();
+            GameplayLib.ShowLogStatusMsg("You waked up recently... It's time to move.");
+        }
+
+        public static void InitializateCities()
+        {
+            leto = new Leto();
+        }
+
+        public static void InitializatePlaces()
+        {
+
+        }
+        // -------------------------------- FIM FUNÇOES INICIALIZADORAS DO JOGO ------------------------------------- //
     }
 }

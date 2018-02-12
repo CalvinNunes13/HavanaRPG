@@ -1,5 +1,4 @@
-﻿using HavanaRPG.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,9 +8,9 @@ using System.Windows.Forms;
 
 namespace HavanaRPG.Views
 {
-    public partial class PlaceView : HavanaRPG.Views.Controls.BaseForm
+    public partial class MapView : HavanaRPG.Views.Controls.BaseForm
     {
-        public PlaceView(Location place)
+        public MapView()
         {
             InitializeComponent();
         }

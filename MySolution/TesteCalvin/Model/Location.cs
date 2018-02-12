@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace HavanaRPG.Model
     public class Location
     {
         public string LocalName { get; set; }
-        public string ImgSource { get; set; }
+        public Image ImgSource { get; set; }
         public string Description { get; set; }
         public Form SpecificView { get; set; }
         public List<Location> Places { get; set; }

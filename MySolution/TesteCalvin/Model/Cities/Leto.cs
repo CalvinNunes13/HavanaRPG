@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace HavanaRPG.Model.Cities
 {
-    class Leto : Location
+    public class Leto : Location
     {
         public Leto()
         {
             LocalName = "Leto";
             Description = "";
-            var npcDamian = new Damian();
-            npcDamian.Local = this;
+            var npcDamian = new Damian
+            {
+                Local = this
+            };
             Npcs.Add(npcDamian);
             Shops.Add(new SimpleEquipShop());
         }

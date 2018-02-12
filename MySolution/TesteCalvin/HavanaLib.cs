@@ -16,12 +16,13 @@ namespace HavanaRPG.Model
         public enum ClassNames { None, Warrior, Sorcerer, Druid, Paladin, Archer, Monk, Thief };
         public enum CitiesNames { Leto, Monxevis };
         public enum Locations { Limbo, Leto, Monxevis, Gibraltar_Forest, };
-        public enum StatsNames { Strenght, Magic, Dexterity, Creativity, Winsdom}
+        public enum StatsNames { Strenght, Magic, Dexterity, Creativity, Winsdom }
         public enum StatusNames { None, Blind, Slow, Confused };
         public enum DayTime { Morning, Afternoon, Night };
         public enum AdvDvd { None, Resistance, Advantage, Normal, Disadvantage, Weakness }
         public enum Elements { None, Water, Fire, Air, Earth, Dark, Light, Physical }
         public enum Gender { None, Male, Female };
+        public enum ItemTypes { None, Weapons, Armors, Generic, Potions, Magical, Archery }
 
         public HavanaLib() { }
 
@@ -53,7 +54,7 @@ namespace HavanaRPG.Model
             {
                 MsgBox("ERROR WHILE LOADING! The game will not start.\n" + ex.Message + "\n Contact the developers at HavanaRpg@outlook.com", "error", "ERROR");
             }
-            
+
         }
 
         public static ClassNames ReturnEnumClassByString(string value)
@@ -89,7 +90,7 @@ namespace HavanaRPG.Model
                 var splitReturn = diceNameStyle.Split('d');
                 diceRolls = int.Parse(splitReturn[0]);
             }
-            catch
+            catch (Exception ex)
             {
                 return 1;
             }
@@ -107,7 +108,7 @@ namespace HavanaRPG.Model
                 var splitReturn = diceNameStyle.Split('d');
                 diceSides = int.Parse(splitReturn[1]);
             }
-            catch
+            catch (Exception ex)
             {
                 return 1;
             }
@@ -122,16 +123,7 @@ namespace HavanaRPG.Model
             action();
 
             RunLoopTimer(action, timeout);
-        }
 
-        //Retorna string da visualização da data do jogo
-        public static string ReturnDisplayDateAndTime()
-        {
-            string displayDate = "";
-            displayDate = GameplayLib.GameDateDay.ToString() + "/";
-            displayDate = displayDate + GameplayLib.GameDateMonth.ToString() + "/";
-            displayDate = displayDate + GameplayLib.GameDateYear.ToString();
-            return displayDate;
         }
 
         //Verifica se objeto é vazio
@@ -216,11 +208,11 @@ namespace HavanaRPG.Model
 
         public static void MsgBox(string msg, string type, string caption) //alert, error, info
         {
-            if (type == "alert")
+            if (type.ToUpper() == "ALERT")
             {
                 MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (type == "error")
+            else if (type.ToUpper() == "ERROR")
             {
                 MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -1,5 +1,6 @@
 ﻿using HavanaRPG.Model.Skills;
 using HavanaRPG.Model.Weapons;
+using HavanaRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace HavanaRPG.Model.RpgClasses
             InitialSkills.Add(sFury);
             InitialGold = 0;
             InitialAlignment = 0;
+
+            ImgSource = Resources.humano;
         }
     }
 }

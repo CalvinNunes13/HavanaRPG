@@ -13,7 +13,8 @@ namespace HavanaRPG.Model.Shops
         public SimpleEquipShop()
         {
             Selling.Add(new Club());
-            Selling.Add(new SimpleClothes());            
+            Selling.Add(new SimpleClothes());
+            SellingTypes = HavanaLib.ItemTypes.Armors;
         }
     }
 }

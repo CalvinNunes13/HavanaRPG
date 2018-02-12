@@ -22,11 +22,13 @@ namespace HavanaRPG
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            _MainContainerView = new MainContainerView();
-            _MainContainerView.IsMdiContainer = true;
+            _MainContainerView = new MainContainerView
+            {
+                IsMdiContainer = true
+            };
             GameController.ExecuteBasics(_MainContainerView);
 
-            Application.Run(GameController._MainContainerView);
+            Application.Run(ViewsController._MainContainerView);
         }
     }
 }

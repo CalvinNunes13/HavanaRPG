@@ -14,7 +14,7 @@ namespace HavanaRPG.Views
         public StartMainMenuView()
         {
             InitializeComponent();
-            this.MdiParent = GameController._MainContainerView;
+            this.MdiParent = ViewsController._MainContainerView;
         }
 
         private void btn_newGame_Click(object sender, EventArgs e)

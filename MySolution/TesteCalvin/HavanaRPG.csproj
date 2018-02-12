@@ -119,11 +119,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\MainGameStartContainer.cs">
+    <Compile Include="Views\MapView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\MainGameStartContainer.Designer.cs">
-      <DependentUpon>MainGameStartContainer.cs</DependentUpon>
+    <Compile Include="Views\MapView.Designer.cs">
+      <DependentUpon>MapView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PlaceView.cs">
       <SubType>Form</SubType>
@@ -143,6 +143,12 @@
     <Compile Include="Views\PlayerView.Designer.cs">
       <DependentUpon>PlayerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShopView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ShopView.Designer.cs">
+      <DependentUpon>ShopView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartMainMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,9 +161,15 @@
     <Compile Include="Views\TalkView.Designer.cs">
       <DependentUpon>TalkView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\CityView.resx">
+      <DependentUpon>CityView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GameView.resx">
+      <DependentUpon>GameView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainContainerView.resx">
       <DependentUpon>MainContainerView.cs</DependentUpon>
@@ -172,14 +184,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\MainGameStartContainer.resx">
-      <DependentUpon>MainGameStartContainer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\PlayerCreationView.resx">
       <DependentUpon>PlayerCreationView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ShopView.resx">
+      <DependentUpon>ShopView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\StartMainMenuView.resx">
       <DependentUpon>StartMainMenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TalkView.resx">
+      <DependentUpon>TalkView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

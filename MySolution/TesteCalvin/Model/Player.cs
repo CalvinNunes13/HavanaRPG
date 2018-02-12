@@ -1,4 +1,5 @@
 ﻿using HavanaRPG.Controller;
+using HavanaRPG.Model.Cities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,7 @@ namespace HavanaRPG.Model
             PlayerSex = gender;
             PlayerLevel = 1;
             Experience = 0;
+            PlayerLocation = new Location();
 
             if (PlayerSex == HavanaLib.Gender.Male)
             {
@@ -85,10 +87,17 @@ namespace HavanaRPG.Model
             else if (PlayerSex == HavanaLib.Gender.Female)
             {
                 CallTitle = "Lady";
-            }
+            }                       
 
+            HasLeveledUp = false;
+            LevelsAwaiting = 0;
+        }
+
+        public virtual void SetFirstDefaults()
+        {
             GameplayLib.SetDataByPlayerClass(PlayerClass);
             WeigthCap = Math.Floor(Strenght * 10);
+            PlayerLocation = GameController.leto;
 
             AdjustCarryingWeight();
 
@@ -102,9 +111,6 @@ namespace HavanaRPG.Model
             PhysicalAtkPoints = Math.Floor(Strenght / 3);
             MagicalAtkPoints = Math.Floor(Magic / 3);
             ExpToNextLevel = GameplayLib.UpdateReturnXpNextLevel(PlayerLevel, false);
-
-            HasLeveledUp = false;
-            LevelsAwaiting = 0;
         }
 
         public virtual void AdjustCarryingWeight()

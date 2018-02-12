@@ -15,16 +15,18 @@ namespace HavanaRPG.Views
     {
         public PlayerCreationView()
         {
-            InitializeComponent();
-            this.MdiParent = GameController._MainContainerView;
+            InitializeComponent();            
+            this.MdiParent = ViewsController._MainContainerView;
         }
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            StartMainMenuView startView = new StartMainMenuView();
-            startView.Name = "StartMainMenuView";
-            startView.MdiParent = GameController._MainContainerView;
-            ViewsController.OpenNewForm(startView);
+            StartMainMenuView startView = new StartMainMenuView
+            {
+                Name = "StartMainMenuView",
+                MdiParent = ViewsController._MainContainerView
+            };
+            ViewsController.OpenNewForm(startView, true);
             this.Close();
         }
 
@@ -36,11 +38,10 @@ namespace HavanaRPG.Views
                 string classSelected = cbx_class.SelectedItem.ToString();
                 var _class = HavanaLib.ReturnEnumClassByString(classSelected);
                 string genderSelected = cbx_gender.SelectedItem.ToString();
-                var gender = HavanaLib.ReturnEnumGenderByString(classSelected);
-                if (HavanaLib.ConfirmBox("Confirm?\n" + "Name: " + HavanaLib.ToProperCase(name) + "\nClass: " + classSelected + "\nGender: " + genderSelected))
+                var gender = HavanaLib.ReturnEnumGenderByString(genderSelected);
+                if (HavanaLib.ConfirmBox("Confirm?" + Environment.NewLine + Environment.NewLine + "NAME:  " + HavanaLib.ToProperCase(name) + "\nCLASS:  " + classSelected + "\nGENDER:  " + genderSelected))
                 {
-                    GameController.SetFirstPlayerData(name, _class, gender);
-                    GameController.LaunchGameplay();
+                    GameController.PerformStart(name, _class, gender);
                 }
             }
 
@@ -100,41 +101,39 @@ namespace HavanaRPG.Views
             switch (class_selected)
             {
                 case HavanaLib.ClassNames.Warrior:
-                    class_ = new WarriorClass();
-                    this.txt_classInfo.Text = class_.ToString();
-                    this.img_charRace.Image = Properties.Resources.humano;
+                    class_ = new WarriorClass();                    
                     break;
 
                 case HavanaLib.ClassNames.Sorcerer:
                     class_ = new SorcererClass();
-                    this.txt_classInfo.Text = class_.ToString();
                     break;
 
                 case HavanaLib.ClassNames.Paladin:
                     class_ = new PaladinClass();
-                    this.txt_classInfo.Text = class_.ToString();
                     break;
 
                 case HavanaLib.ClassNames.Druid:
                     class_ = new DruidClass();
-                    this.txt_classInfo.Text = class_.ToString();
                     break;
 
                 case HavanaLib.ClassNames.Archer:
                     class_ = new ArcherClass();
-                    this.txt_classInfo.Text = class_.ToString();
                     break;
 
                 case HavanaLib.ClassNames.Monk:
                     class_ = new MonkClass();
-                    this.txt_classInfo.Text = class_.ToString();
                     break;
 
                 case HavanaLib.ClassNames.Thief:
                     class_ = new ThiefClass();
-                    this.txt_classInfo.Text = class_.ToString();
+                    break;
+
+                default:
+                    class_ = new RpgClass();
                     break;
             }
+            this.txt_classInfo.Text = class_.ToString();
+            this.img_charRace.Image = class_.ImgSource;
         }
 
         private void cbx_gender_SelectedIndexChanged(object sender, EventArgs e)

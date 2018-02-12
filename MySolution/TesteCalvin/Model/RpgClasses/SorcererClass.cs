@@ -1,6 +1,7 @@
 ﻿using HavanaRPG.Model.Armors;
 using HavanaRPG.Model.Items;
 using HavanaRPG.Model.Weapons;
+using HavanaRPG.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace HavanaRPG.Model.RpgClasses
             InitialItens.Add(iPotion);
             InitialGold = 5;
             InitialAlignment = 0;
+
+            ImgSource = Resources.anao;
         }
     }
 }

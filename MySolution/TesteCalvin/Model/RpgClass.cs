@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using HavanaRPG.Properties;
 
 namespace HavanaRPG.Model
 {
@@ -30,7 +31,7 @@ namespace HavanaRPG.Model
         public List<Ability> InitialSpells { get; set; }
         public decimal HpPerLevel { get; set; }
         public decimal EpPerLevel { get; set; }
-        public string ImgSource { get; set; }
+        public Image ImgSource { get; set; }
 
         public RpgClass()
         {
@@ -42,20 +43,21 @@ namespace HavanaRPG.Model
         public override string ToString()
         {
             var stringReturn = "";
-            stringReturn += ClassName.ToString() + "\n\n" +
-                 ClassDescription +
-                "\nInitial Strenght: " + InitialStrenght +
-                "\nInitial Magic: " + InitialMagic +
-                "\nInitial Dexterity: " + InitialDexterity +
-                "\nInitial Creativity: " + InitialCreativity +
-                "\nInitial Winsdom: " + InitialWinsdom +
-                "\nInitial HP: " + InitialHP +
-                "\nInitial EP:" + InitialEP +
-                "\nEvery Level Up gains: " + HpPerLevel + " HP and " + EpPerLevel + " EP" +
-                "\nInitial Gold Coins: " + InitialGold;
+            stringReturn += ClassName.ToString().ToUpper() + Environment.NewLine + Environment.NewLine +
+                 ClassDescription + Environment.NewLine + Environment.NewLine +
+                "Initial Strenght: " + InitialStrenght + Environment.NewLine +
+                "Initial Magic: " + InitialMagic + Environment.NewLine +
+                "Initial Dexterity: " + InitialDexterity + Environment.NewLine +
+                "Initial Creativity: " + InitialCreativity + Environment.NewLine +
+                "Initial Winsdom: " + InitialWinsdom + Environment.NewLine +
+                "HP: " + InitialHP + Environment.NewLine +
+                "EP: " + InitialEP + Environment.NewLine +
+                "Every Level Up gains: " + HpPerLevel + " HP and " + EpPerLevel + " EP" + Environment.NewLine +
+                "Initial Gold Coins: " + InitialGold + Environment.NewLine;
             if (InitialItens.Count > 0)
             {
-                stringReturn += "\n";
+                stringReturn += Environment.NewLine;
+                stringReturn += "Starting Itens: ";
                 foreach (var item in InitialItens)
                 {
                     stringReturn += item.ItemName + "; ";
@@ -64,7 +66,8 @@ namespace HavanaRPG.Model
 
             if (InitialSkills.Count > 0)
             {
-                stringReturn += "\n";
+                stringReturn += Environment.NewLine;
+                stringReturn += "Starting Skills: ";
                 foreach (var skill in InitialSkills)
                 {
                     stringReturn += skill.AbilityName + "; ";
@@ -73,7 +76,8 @@ namespace HavanaRPG.Model
 
             if (InitialSpells.Count > 0)
             {
-                stringReturn += "\n";
+                stringReturn += Environment.NewLine;
+                stringReturn += "Starting Spells: ";
                 foreach (var spell in InitialSpells)
                 {
                     stringReturn += spell.AbilityName + "; ";

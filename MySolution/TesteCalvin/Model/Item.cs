@@ -13,6 +13,7 @@ namespace HavanaRPG.Model
         public decimal DiceRolls { get; set; }
         public decimal DiceSides { get; set; }
         public decimal Weight { get; set; }
+        public HavanaLib.ItemTypes Type { get; set; }
         public int AttackPts { get; set; }
         public int BonusValue { get; set; }
         public int ArmorPts { get; set; }
@@ -35,6 +36,7 @@ namespace HavanaRPG.Model
 
             ItemName = "";
             Description = "";
+            Type = HavanaLib.ItemTypes.None;
             DiceRolls = 1;
             DiceSides = 4;
             Weight = 0;

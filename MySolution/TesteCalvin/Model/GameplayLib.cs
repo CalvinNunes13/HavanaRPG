@@ -19,7 +19,7 @@ namespace HavanaRPG.Model
         public static int GameDateYear = 411;
         public static decimal CreaturesKilled = 0;
         public static HavanaLib.DayTime TimeofDay = HavanaLib.DayTime.Morning;
-        public static Player GamePlayer;
+        public static Player GamePlayer = new Player("", HavanaLib.ClassNames.None, HavanaLib.Gender.None);
 
         //Game Options//
         public static decimal DiceShowTime = 2000;
@@ -28,7 +28,7 @@ namespace HavanaRPG.Model
         //Game Functions//
         public static void RunGameTime()
         {
-            HavanaLib.RunLoopTimer(AdvanceDayTime, new TimeSpan(60000)); //600000 = 10 minutos
+            HavanaLib.RunLoopTimer(() => AdvanceDayTime(), TimeSpan.FromSeconds(10));
         }
 
         //retorna um valor aleatório com base em um dado de determinados lados
@@ -99,33 +99,33 @@ namespace HavanaRPG.Model
                     rpgClass = new RpgClass();
                     break;
             }
-            GameplayLib.GamePlayer.MaxStrenght = rpgClass.InitialStrenght;
-            GameplayLib.GamePlayer.MaxMagic = rpgClass.InitialMagic;
-            GameplayLib.GamePlayer.MaxDexterity = rpgClass.InitialDexterity;
-            GameplayLib.GamePlayer.MaxCreativity = rpgClass.InitialCreativity;
-            GameplayLib.GamePlayer.MaxWinsdom = rpgClass.InitialWinsdom;
-            GameplayLib.GamePlayer.MaxHealthPts = rpgClass.InitialHP;
-            GameplayLib.GamePlayer.MaxEnergyPts = rpgClass.InitialEP;
-            GameplayLib.GamePlayer.GoldPcs = rpgClass.InitialGold;
+            GamePlayer.MaxStrenght = rpgClass.InitialStrenght;
+            GamePlayer.MaxMagic = rpgClass.InitialMagic;
+            GamePlayer.MaxDexterity = rpgClass.InitialDexterity;
+            GamePlayer.MaxCreativity = rpgClass.InitialCreativity;
+            GamePlayer.MaxWinsdom = rpgClass.InitialWinsdom;
+            GamePlayer.MaxHealthPts = rpgClass.InitialHP;
+            GamePlayer.MaxEnergyPts = rpgClass.InitialEP;
+            GamePlayer.GoldPcs = rpgClass.InitialGold;
             if (rpgClass.InitialItens.Count > 0)
             {
                 foreach (var item in rpgClass.InitialItens)
                 {
-                    GameplayLib.GamePlayer.BackpackEquips.Add(item);
+                    GamePlayer.BackpackEquips.Add(item);
                 }
             }
             if (rpgClass.InitialSkills.Count > 0)
             {
                 foreach (var skill in rpgClass.InitialSkills)
                 {
-                    GameplayLib.GamePlayer.Skills.Add(skill);
+                    GamePlayer.Skills.Add(skill);
                 }
             }
             if (rpgClass.InitialSpells.Count > 0)
             {
                 foreach (var spell in rpgClass.InitialSpells)
                 {
-                    GameplayLib.GamePlayer.Spells.Add(spell);
+                    GamePlayer.Spells.Add(spell);
                 }
             }
 
@@ -134,8 +134,24 @@ namespace HavanaRPG.Model
         //toDISPLAY LIB - Retorno de valores para display como string
         public static string ReturnPlayerLocationToDisplay()
         {
-            var local = GamePlayer.PlayerLocation.ToString();
-            return local;
+            var localString = "";
+            try
+            {
+                var local = GamePlayer.PlayerLocation;
+                if (local == null)
+                {
+                    localString = "Somewhere";
+                }
+                else
+                {
+                    localString = local.LocalName.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                localString = "Somewhere";
+            }
+            return localString;
         }
 
         public static string ReturnPlayerHPtoDisplay()
@@ -175,16 +191,20 @@ namespace HavanaRPG.Model
             var name = GamePlayer.Name.ToString();
             return name;
         }
-        //------------ FIM ToDisplay LIB -------------//
-
+       
+        //Ajusta a barra de experiência da tela
         public static void AdjustExperienceBar()
         {
             UpdateReturnXpNextLevel(GamePlayer.PlayerLevel, true);
             decimal xpToLvl = GamePlayer.ExpToNextLevel;
             decimal cXP = GamePlayer.Experience;
-            GameController._MainContainerView.pb_ExpBar.Maximum = (int)xpToLvl;
-            GameController._MainContainerView.pb_ExpBar.Value = (int)cXP;
+            ViewsController._MainContainerView.pb_ExpBar.Value = 0;
+            ViewsController._MainContainerView.pb_ExpBar.Maximum = (int)xpToLvl;            
+            ViewsController._MainContainerView.pb_ExpBar.Step = (int)cXP;
+            ViewsController._MainContainerView.pb_ExpBar.PerformStep();
+            ViewsController._MainContainerView.pb_ExpBar.ToolTipText = "Experience: " + cXP;
         }
+        //------------ FIM ToDisplay LIB -------------//
 
         //Retorna valor com base em um bonus extra
         public static decimal ReturnWithBonus(decimal diceValue, decimal bonusValue)
@@ -284,12 +304,15 @@ namespace HavanaRPG.Model
                 }
                 GamePlayer.OnLevelUp();
                 GamePlayer.Experience = 0;
+                AdjustExperienceBar();
                 UpdateNewXp((int)remainingXp);
             }
             else
             {
                 GamePlayer.Experience = newXp;
+                AdjustExperienceBar();
             }
+
         }
 
         //Retorna o valor de xp para o proximo level
@@ -315,7 +338,7 @@ namespace HavanaRPG.Model
         }
 
         //faz a compra ou venda de algo com gold do player
-        public static void PlayerGoldTransaction(int value, string action) //buy or sell
+        public static void PlayerGoldTransaction(decimal value, string action) //buy or sell
         {
             if (action == "buy")
             {
@@ -420,7 +443,7 @@ namespace HavanaRPG.Model
                 msg = msg.ToUpper();
             }
 
-            GameController._MainContainerView.StatusLogBox.Text += "\n" + msg;
+            ViewsController._MainContainerView.StatusLogBox.Text += "\n" + msg;
         }
 
         //Avança o período do dia se for preciso, avança um dia na data do jogo
@@ -449,9 +472,27 @@ namespace HavanaRPG.Model
                         GameDateYear++;
                     }
                 }
-                var newDate = HavanaLib.ReturnDisplayDateAndTime();
-                //fazer uma forma de ajusta na view
             }
+            var newDate = ReturnDisplayDateAndTime();
+            AdjustDayTimeDisplay(newDate);
+        }
+
+        //Retorna string da visualização da data do jogo
+        public static string ReturnDisplayDateAndTime()
+        {
+            string displayDate = "";
+            displayDate += TimeofDay.ToString() + " - ";
+            displayDate += GameDateDay.ToString() + "/";
+            displayDate += GameDateMonth.ToString() + "/";
+            displayDate += GameDateYear.ToString();
+            return displayDate;
+        }
+
+        public static void AdjustDayTimeDisplay(string date)
+        {
+            ViewsController._MainContainerView.txt_dateTime.Text = null;
+            ViewsController._MainContainerView.txt_dateTime.Text = date;
+            var txtTest = ViewsController._MainContainerView.txt_dateTime.Text;
         }
     }
 }

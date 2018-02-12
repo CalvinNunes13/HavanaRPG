@@ -22,7 +22,7 @@ namespace HavanaRPG.Model
 
         public virtual void OnStartBattle()
         {
-            ViewsController.CloseForm(GameController._MainContainerView.ActiveMdiChild);
+            ViewsController.CloseForm(ViewsController._MainContainerView.ActiveMdiChild);
             ViewsController.OpenNewForm(SpecificView);
         }
 
