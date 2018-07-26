@@ -6,7 +6,7 @@ This game is a text-based RPG with graphical representations.
 In this game you are free to choose your own destiny,be good or be evil, fight creatures, explore the world and live your magical medieval life taking with you all the consequences of your actions.
 
 Development Start: 29/01/2018<br>
-Initial Prevision: first quarter of 2019
+Initial Prevision: first quarter of 2019<br>
 Current Prevision: STANDBY (not being developed for now)
 
 _Crew:_ 
