@@ -7,6 +7,7 @@ In this game you are free to choose your own destiny,be good or be evil, fight c
 
 Development Start: 29/01/2018<br>
 Initial Prevision: first quarter of 2019
+Current Prevision: STANDBY (not being developed for now)
 
 _Crew:_ 
 - Development and direction: Calvin Nunes
